@@ -1,80 +1,177 @@
-# 课前准备
+# Guide to Labworks by WQY
 
-## 安装(wsl + Ubuntu):
+本文由吴健雄学院22级吴清晏编写，希望能帮助同学们顺利完成操作系统实验的准备工作，加深对操作系统的理解。
 
-1. 打开控制面板->程序->启动或关闭Windows功能->适用于Linux的Windows子系统(重启)
+本文包含以下几个部分：
 
-2. 打开Terminal，输入`wsl --update`，更新完成后直接输入`wsl`
+首先，课前准备部分，为使用Windows的同学提供了Linux虚拟机的安装教程，并根据自己在配置环境时遇到的问题和解决方法，希望能帮助同学们少走一些弯路。此外，还包括实验文件的下载以及Xv6的下载。后续可能还会添加其他内容。
 
-3. 在安装过程中，提示输入用户名(不能有大写)和密码(不显示为正常)
+## 课前准备教程
 
-*如果通过其他方式安装Ubuntu导致跳过了用户设置，此时应该为root状态，通过passwd设置root密码后，通过`adduser <username>`添加用户，并通过`adduser <username> sudo`给该用户添加管理员权限*
+在开始前，需要明确你的需求：是仅仅想完成操作系统课程实验，还是想完全体验Linux的使用；是想仅使用命令行窗口，还是希望有一个完整的图形界面…无论如何，你都会需要的有：GNU编译环境安装，实验文件下载，Xv6配置。
 
-4. 安装完成，回到Terminal，输入`ubuntu config --default-user <username>`设置默认登录用户，这里的`<username>`就是刚刚设置的
+此外，你可以选择在`wsl`和`VMware`中选择一个虚拟机平台(本教程仅针对Windows系统，因为Mac是Unix内核，不需要额外配置)
 
-5. 如果想把Ubuntu移动到指定位置(如D盘)，执行以下步骤
-   1. Terminal输入`wsl --shutdown`关闭，(`wsl -l -v`查看状态)
-   2. 确认关闭后，输入`wsl --export Ubuntu D:\wsl2.tar`导出
-   3. 导出完成卸载原发行版`wsl --unregister Ubuntu`
-   4. `wsl --import Ubuntu D:\Ubuntu_WSL\ D:\wsl2.tar`导入
-   5. 输入`wsl`启动Ubuntu
+在这之后，你可以从`VS code`和其他文本编辑器(如`vim`，`nano`，`Emacs`等)中选择一种，个人推荐`VS code`。
 
-6. 进入Ubuntu，输入`sudo apt-get update`更新，根据提示输入密码
+### 虚拟机配置
 
-7. 输入`sudo apt-get install build-essential gdb`安装gcc环境
+#### VMware配置
 
-8. 输入`code .`安装并打开Visual Studio Code
+如果你的需求仅仅是操作系统实验，那么wsl就足够了，占用空间更小，启动更方便，文件传输更便捷，**但是！**wsl对GUI(图形界面)的支持极差，如果你需要在Linux环境下运行带有图形界面的软件(如使用Open 3d库的Python脚本)，那么，你需要一个**完整**的Linux系统，包括图形界面。
 
-9.  文件->打开文件夹->`~`打开用户目录，新建test.c(根据提示安装插件)
+网上有大量VMware的安装教程，这里推荐[这一篇](https://zhuanlan.zhihu.com/p/617093823)，安装完成后，你需要自己下载Linux安装镜像(.iso格式)，推荐通过东南大学最新搭建的[镜像站](https://mirrors.seu.edu.cn/)下载，推荐[Ubuntu22.04版本](https://mirrors.seu.edu.cn/ubuntu-releases/22.04/ubuntu-22.04.4-desktop-amd64.iso)。
 
-   ```c
-   #include <stdio.h>
-   int main(int argc, char *argv[])
-   {
-       printf("Hello World\n");
-       return 0;
-   }
-   ```
+#### WSL + Ubuntu
 
-10. 点击按钮运行，选择gcc，若输出为`Hello World`，配置完成
+> 注意！只有Win10/11才能使用wsl！
+
+1. 搜索`启动或关闭Windows功能`，打开`适用于Linux的Windows子系统`和`虚拟机平台`，并根据提示重启。
+
+2. 打开Terminal，输入`wsl --update`。
+
+   > Tips:
+   >
+   > 有时会显示`没有安装的分发版`，首先按照提示输入`wsl.exe --list --online`查看可以安装的系统，输入`wsl.exe --install <系统名>`完成安装，推荐选择`Ubuntu`
+
+   > 如果你的电脑近期重新安装过`家庭版`系统，有可能出现`注册表缺失`报错，解决方法为安装[Win11专业版](https://software.seu.edu.cn/soft/detail/18)，安装完成后在`启动或关闭Windows功能`页面勾选`Hyper-V`，并重新打开两个功能。
+
+3. 在安装过程中，提示输入用户名(不能有大写)和密码。
+
+   ***在Linux系统中，密码默认隐藏，记住自己输了几位！***
+
+   > 如果未完成用户设置就关闭了Ubuntu，将默认登录为root用户。
+   >
+   > 通过`passwd`命令设置root密码后，可通过`adduser <username>`添加用户，之后需要通过`adduser <username> sudo`命令给新用户添加管理员权限。
+   >
+   > 如果希望默认登录为普通用户(而不是root用户)，可通过`ubuntu config --default-user <username>`设置默认登录用户，注意这一行命令不是在Ubuntu，而是在Windows的`Terminal`或`Command`终端运行的。
+   >
+   > (以上指令请替换\<username>为用户名)
+
+4. 在Ubuntu中，大部分命令都需要管理员权限(sudo)，但现在还没有设置管理员(root用户)密码，可通过`sudo passwd`设置，推荐采用与当前用户一样的密码，防止混淆。
+
+#### GNU编译环境安装<span id='GNU'></span>
+
+1. 进入Ubuntu，输入`sudo apt-get update`更新，根据提示输入管理员密码。
+
+2. 输入`sudo apt-get install build-essential gdb`
+
+   > build-essential包括了`gcc`,`g++`和`make`，其中`gcc`和`g++`分别为`c语言`和`c++`的编译器，`make`可以编译带有`makefile`文件的开源软件代码。
+   >
+   > GDB的全称是GNU Debugger，之后我们使用的VS code提供的断点调试等功能就是基于GDB的。
+
+#### 文本编辑器安装
+
+Ubuntu系统一般已经默认安装了vim和nano，CentOS系统一般只内置了vi，但通过自带的包管理器可以很方便的安装。`vim`、`emac`和`nano`都是基于命令行的文本编辑器，而`Gnome`和`VS code`都拥有图形界面，可以使用鼠标辅助编辑，也可以粘贴多行文本。
+
+vim和nano教程很多，重点是快捷键的使用。Gnome是GNOME桌面的默认文本编辑器，个人认为在wsl上使用很鸡肋，推荐直接使用`VS code`。
+
+在安装wsl版本的VS code前，需要先在Windows上[安装VS code](https://code.visualstudio.com/)，安装时推荐勾选`添加到右键菜单`
+
+1. 在wsl中输入`code .`即可完成VS code安装，注意中间有空格。其实该命令主要用于在当前目录下启动VS code。
+
+   > 如果使用较老的系统版本(如CentOS7)，可能无法正常安装VS code，因为最新版的VS code需要Glibc的版本大于等于2.28。推荐不要折腾老系统，换个新点的Linux。
+
+2. 在VS code中选择`文件`->`打开文件夹`，输入`~`打开用户目录，新建`test.c`，输入以下内容
+
+   (可根据提示安装C/C++插件)
+
+```c
+#include <stdio.h>
+int main(int argc, char *argv[])
+{
+    printf("Hello World\n");
+    return 0;
+}
+```
+
+4. 点击右上角按钮运行，在编辑器选项中选择`gcc`，若输出为`Hello World`，则说明`GNU`的配置正常。
+
+> 默认情况下，WSL会把虚拟机安装到C盘，但C盘往往空间比较紧张，如果希望把虚拟机安装到指定位置，可进行如下操作：<span id='export'></span>
+>
+> 1. Windows Terminal输入`wsl --shutdown`关闭，(`wsl -l -v`查看虚拟机状态)
+> 2. 确认关闭后，输入`wsl --export Ubuntu D:\wsl2.tar`导出(以D:\wsl2.tar为例)
+> 3. 导出完成后卸载原虚拟机`wsl --unregister Ubuntu`(假设虚拟机名称为Ubuntu)
+> 4. `wsl --import Ubuntu D:\Ubuntu_WSL\ D:\wsl2.tar`导入(假设导入到D:\Ubuntu_WSL)
 
 (本部分参考了[wsl官方教程](https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment))
 
-## 安装浏览器与对应插件(如果你想在wsl中打开说明页面)
+## 其他配置
+
+这一部分**不推荐**执行，但如果确实有相关需求，或许能帮忙少走一些弯路。
+
+### 配置git
+
+1. Ubuntu默认已安装git，只需配置用户名和邮箱(改为自己的)
+2. `git config --global user.name "Your Name"`
+3. `git config --global user.email "youremail@domain.com"`
+4. 如果Windows上没有安装Git，点击[链接](https://github.com/git-for-windows/git/releases/)下载并安装
+5. `git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"`
+6. 可以尝试在VS Code中使用`源代码管理`进行推送与拉取
+7. 如果把Projects放在Git仓库中，可通过在文件夹中添加`.gitignore`文件，输入`test*`忽略所有测试用代码
+
+### 在Linux中安装Chrome浏览器
 
 1. 输入`cd /tmp`打开临时目录
 2. `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb`下载Chrome安装包
 3. `sudo apt install --fix-missing ./google-chrome-stable_current_amd64.deb`安装
 4. `sudo apt-get install ttf-wqy-zenhei`安装中文字体
-5. 尝试打开，输入`google-chrome`
-6. 确认显示正常后，关闭窗口，输入`code .`打开VS Code
-7. 搜索并安装插件`Open Browser Preview`
+5. 输入`google-chrome`启动浏览器
 
-(Tips: 可使用Chrome自带的网页翻译功能，若没有正常弹出翻译选项，按`F12`进入开发者工具，选中\<html>右键添加属性`lang="en"`将网站标注为英文)
+### 安装VS code插件(快捷打开网页)
 
-## 配置中文输入法(可选)
+​	输入`code .`打开VS Code，在拓展程序部分，搜索并安装插件`Open Browser Preview`
 
-如果你希望浏览器的字体为中文，且可像在Windows系统上一样输入中文，可以尝试以下配置。推荐在尝试前先导出备份。
+> Tips:
+>
+> Chrome自带了网页翻译功能，若未能检测出英文网页，按`F12`进入开发者工具，选中\<html>右键添加属性`lang="en"`将网站标注为英文)
 
-1. 操作中有的需要更高权限，须设置root密码`sudo passwd`
+### 配置中文输入法(强烈不推荐)
 
-2. 配置中文语言包`sudo apt install language-pack-zh-hans`
+如果你希望在Linux的浏览器上像Windows系统上一样输入中文，可以尝试以下配置。
 
-   (假设之前已经安装了中文字体)
+**该过程比较危险，推荐在尝试前先[导出备份](#export)**
 
-3. 编辑`/etc/locale.gen`，去掉`en_US.UTF-8 UTF-8` 及 `zh_CN.UTF-8 UTF-8`前的注释符号`vim /etc/locale.gen`(按i编辑，ESC+`:wq`保存并退出)
+1. 配置中文语言包
 
-4. `sudo locale-gen --purge`
+   ```shell
+   sudo apt install language-pack-zh-hans
+   ```
 
-5. 安装输入法`sudo apt install fcitx fonts-noto-cjk fonts-noto-color-emoji dbus-x11`
+2. 编辑`/etc/locale.gen`，去掉`en_US.UTF-8 UTF-8` 及 `zh_CN.UTF-8 UTF-8`前的注释符号
 
-6. 安装输入模式`sudo apt install <Package>`其中package从`fcitx-libpinyin`，`fcitx-sunpinyin`，`fcitx-googlepinyin`中挑选一个
+   ```shell
+   vim /etc/locale.gen
+   ```
 
-7. 切换到root用户`su root`
+   (按i编辑，`ESC`+`:wq`保存并退出)
 
-8. `dbus-uuidgen > /var/lib/dbus/machine-id`
+   ```shell
+   sudo locale-gen --purge
+   ```
 
-9. 创建新文件`vim /etc/profile.d/fcitx.sh`，输入
+3. 安装输入法
+
+   ```shell
+   sudo apt install fcitx fonts-noto-cjk fonts-noto-color-emoji dbus-x11
+   ```
+
+4. 安装输入模式
+
+   ```shell
+   sudo apt install <Package>
+   ```
+
+   其中package从`fcitx-libpinyin`，`fcitx-sunpinyin`，`fcitx-googlepinyin`中挑选一个
+
+5. 切换到root用户，并创建bus连接
+
+   ```shell
+   su root
+   dbus-uuidgen > /var/lib/dbus/machine-id
+   ```
+
+6. 创建新文件`vim /etc/profile.d/fcitx.sh`，输入
 
    ```shell
    #!/bin/bash
@@ -82,43 +179,47 @@
    export GTK_IM_MODULE=fcitx
    export XMODIFIERS=@im=fcitx
    export DefaultIMModule=fcitx
-
+   
    #optional
    fcitx-autostart &>/dev/null
    ```
 
-10. 打开终端，通过`wsl --shutdown`和`wsl`重启
+7. 在Windows终端中通过`wsl --shutdown`+`wsl`重启虚拟机
 
-11. 输入`fcitx-config-gtk3`，不出意外的话，界面上出现之前安装的输入法。可通过Global Config调整切换输入法的快捷键
+8. 输入`fcitx-config-gtk3`，不出意外的话，界面上出现之前安装的输入法。可通过Global Config调整切换输入法的快捷键。(如果失败，只能从导出的备份重新尝试)
 
-12. 尝试打开浏览器`google-chrome`，看输入法功能是否正常
+9. 打开浏览器，验证输入法功能是否正常
+
+   ````she
+   google-chrome
+   ````
 
 ## 下载实验文件
 
-1. 点击[链接](https://seunic-my.sharepoint.cn/:u:/g/personal/101011912_seu_edu_cn/EUWd54wqsdJNu_h-sHQ1X2YBiZ24oi4rryRwXdoFGWpGsw?e=vDNOXc)下载并解压labworks，将文件夹拖到VSCode窗口中(先打开`~`)
-2. 将文件夹重命名为`projects`，打开./projects/Reverse
-3. 选中`README.html`，右键，选择`Preview In Default Browser`
-4. 如果网页打开成功，则说明配置完成
+1. 点击[链接](https://seunic-my.sharepoint.cn/personal/101011912_seu_edu_cn/_layouts/15/download.aspx?SourceUrl=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs/Xv6.labworks.7z)下载并解压`labworks`，重命名为`projects`
 
-*另一种方案: 直接克隆本仓库(不推荐)*
+```shell
+cd ~
+code .
+```
 
-## 配置git(可选)
+2. 将文件夹从Windows文件资源管理器拖到VS code左侧的文件窗格中，右键选择在资源管理器中打开。接下来就可以像使用Windows一样打开`reverse`文件夹，点击README.html查看实验说明。
 
-1. Ubuntu默认已安装git，只需配置用户名和邮箱(改为自己的)
-2. `git config --global user.name "Your Name"`
-3. `git config --global user.email "youremail@domain.com"`
-4. 如果Windows上没有安装Git，点击[链接](https://github.com/git-for-windows/git/releases/)下载并安装
-5. `git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"`
-6. 可以尝试在VSCode中使用`源代码管理`进行推送与拉取
-7. 如果把Projects放在Git仓库中，可通过在文件夹中添加`.gitignore`文件，输入`Projects/`进行忽略
+   > 如果之前配置了Linux浏览器和VS code插件，可选中文件并右键，选择
+   >
+   > `Preview In Default Browser`在Chrome中打开网页。
 
-*本部分参考wsl官方教程*
+*另一种方案: 直接克隆[本仓库](https://github.com/julymiaw/Operating_System)(不推荐，因为仓库设置了gitignore，文件不全)*
 
-# 第一课 Guide to Labworks
+## 下载Xv6
+
+Xv6在后续的实验中将被使用，但它并不包含在刚刚的实验文件中。
+
+# Guide to Lab works
 
 ## 总体介绍——以Reverse为例
 
-在VScode中打开`~`目录，在`./projects/Reverse`下新建`reverse.c`文件。
+在VS code中打开`~`目录，在`./projects/Reverse`下新建`reverse.c`文件。
 
 ### 需求分析
 
@@ -132,14 +233,21 @@
 
 3. 处理以下4种错误：
 
-  1. 输入参数过多：`usage: reverse <input> <output>`
-  2. 文件无法打开：`reverse: cannot open file '<filename>'`（其中`<filename>`为打不开的文件名）
-  3. 输入相同文件：`reverse: input and output file must differ`（不能仅通过文件名判断）
-  4. 内存分配失败：`malloc failed`
+   * 输入参数过多：`usage: reverse <input> <output>`
 
-  * 无论是哪一种错误，统一用`fprintf(stderr, "whatever the error message is\n");`输出错误并`exit(1);`
+   * 文件无法打开：`reverse: cannot open file '<filename>'`（其中`<filename>`为打不开的文件名）
 
-### 实现功能
+   * 输入相同文件：`reverse: input and output file must differ`（不能仅通过文件名判断）
+
+   * 内存分配失败：`malloc failed`
+
+> 无论是哪一种错误，统一用`fprintf(stderr, "<error message>\n");`输出错误并`exit(1);`返回状态码1。
+>
+> 其中，stderr是一种特殊的输出流，与之类似的输出流是stdout，stdout类似c++中cout。
+>
+> 返回的状态码正常为0，调用exit函数会立即终止并返回指定状态码。
+
+### 功能实现
 
 ```c
 #include <stdio.h>
@@ -150,50 +258,37 @@
 1. 处理错误“输入参数过多”
 
 ```c
-int main(int argc, char *argv[])
-{
-    // 如果用户运行时reverse参数过多，则打印usage: reverse <input> <output>并退出，返回码为 1
-    if (argc > 3)
-    {
-        fprintf(stderr, "usage: reverse <input> <output>\n");
-        exit(1);
-    }
+// 如果用户运行时reverse参数过多，则打印usage: reverse <input> <output>并退出，返回码为 1
+if (argc > 3) {
+    fprintf(stderr, "usage: reverse <input> <output>\n");
+    exit(1);
 }
 ```
 
-2. 定义输入流和输出流，并尝试在提供对应参数时更新输入或输出方式，处理错误“文件无法打开”
+2. 处理错误“文件无法打开”
 
 ```c
-int main(int argc, char *argv[])
-{
-   // 输入流，文件或命令行输入(Ctrl+D结束输入)
-    FILE *input = stdin;
+// 输入流，文件或命令行输入(Ctrl+D结束输入)
+FILE *input = stdin;
 
-    // 输出流，文件或命令行输出
-    FILE *output = stdout;
-    
-    /* 此处省略 */
+// 输出流，文件或命令行输出
+FILE *output = stdout;
 
-    // 如果提供输入文件，打开输入文件
-    if (argc >= 2)
-    {
-        input = fopen(argv[1], "r");
-        if (input == NULL)
-        {
-            fprintf(stderr, "reverse: cannot open file '%s'\n", argv[1]);
-            exit(1);
-        }
+// 如果提供输入文件，打开输入文件
+if (argc >= 2) {
+    input = fopen(argv[1], "r");
+    if (input == NULL) {
+        fprintf(stderr, "reverse: cannot open file '%s'\n", argv[1]);
+        exit(1);
     }
-    
-    // 如果额外提供输出文件，尝试打开，并检查输入输出文件是否相同(用stat防止硬链接)
-    if (argc == 3)
-    {
-        output = fopen(argv[2], "w");
-        if (output == NULL)
-        {
-            fprintf(stderr, "reverse: cannot open file '%s'\n", argv[2]);
-            exit(1);
-        }
+}
+
+// 如果额外提供输出文件，尝试打开，并检查输入输出文件是否相同(用stat防止硬链接)
+if (argc == 3) {
+    output = fopen(argv[2], "w");
+    if (output == NULL) {
+        fprintf(stderr, "reverse: cannot open file '%s'\n", argv[2]);
+        exit(1);
     }
 }
 ```
@@ -201,80 +296,68 @@ int main(int argc, char *argv[])
 3. 通过头文件`<sys/stat.h>`提供的stat函数处理错误“输入相同文件”
 
 ```c
-    if (argc == 3)
-    {
-        /* 此处省略 */
-        struct stat stat1, stat2;
-        stat(argv[1], &stat1);
-        stat(argv[2], &stat2);
-        if (stat1.st_ino == stat2.st_ino)
-        {
-            fprintf(stderr, "reverse: input and output file must differ\n");
+struct stat stat1, stat2;
+stat(argv[1], &stat1);
+stat(argv[2], &stat2);
+if (stat1.st_ino == stat2.st_ino) {
+    fprintf(stderr, "reverse: input and output file must differ\n");
+    exit(1);
+}
+```
+
+4. 分配初始内存，当容量不够时自动扩容，处理错误“内存分配失败”
+
+```c
+// 记录行数
+int num_lines = 0;
+
+// 记录容量，初始为10
+int capacity = 10;
+
+// 用于存储行的数组
+char **lines = malloc(capacity * sizeof(char *));
+if (lines == NULL) {
+    fprintf(stderr, "malloc failed\n");
+    exit(1);
+}
+
+size_t len = 0;
+while (1) {
+    if (num_lines == capacity) {
+        capacity *= 2;
+        lines = realloc(lines, capacity * sizeof(char *));
+        if (lines == NULL) {
+            fprintf(stderr, "malloc failed\n");
             exit(1);
         }
     }
+    if (getline(&lines[num_lines], &len, input) == -1)
+        break;
+    num_lines++;
+}
 ```
 
-4. 分配初始内存，当容量不够时自动扩容，处理错误“内存分配失败”，并从输入流中读取句子
-
-```c
-	// 记录行数
-    int num_lines = 0;
-
-    // 记录容量
-    int capacity = 10;
-
-    // 用于存储行的数组
-    char **lines = malloc(capacity * sizeof(char *));
-    if (lines == NULL)
-    {
-        fprintf(stderr, "malloc failed\n");
-        exit(1);
-    }
-
-	size_t len = 0;
-    while (1)
-    {
-        if (num_lines == capacity)
-        {
-            capacity *= 2;
-            lines = realloc(lines, capacity * sizeof(char *));
-            if (lines == NULL)
-            {
-                fprintf(stderr, "malloc failed\n");
-                exit(1);
-            }
-        }
-        if (getline(&lines[num_lines], &len, input) == -1)
-            break;
-        num_lines++;
-    }
-```
-
-*注意！当len设置为0时，getline方法会自动扩充输入缓冲区，并更新len参数*
+> `getline`函数在`len`设置为0时，会自动扩充输入缓冲区并更新`len`参数。
+>
+> 如果想通过终端测试零参数下的效果，可通过`Ctrl+D`终止输入流，此时`getline`函数会返回-1。
 
 5. 将获取的所有句子逆序放入输出流，释放内存并关闭文件
 
 ```c
-int main(int argc, char *argv[])
-{
-    /* 此处省略 */
-	for (int i = num_lines - 1; i >= 0; i--)
-    {
-        fprintf(output, "%s", lines[i]);
-        free(lines[i]);
-    }
-
-    free(lines);
-    // Close the files
-    if (input != stdin)
-        fclose(input);
-    if (output != stdout)
-        fclose(output);
-
-    return 0;
+for (int i = num_lines - 1; i >= 0; i--) {
+    fprintf(output, "%s", lines[i]);
+    free(lines[i]);
 }
+
+free(lines);
+
+if (input != stdin)
+    fclose(input);
+if (output != stdout)
+    fclose(output);
 ```
+
+> 注意，与C++不同，C语言中用malloc分配的内存一定要主动调用free函数进行内存释放，文件需要主动关闭，这是比较好的代码习惯。
 
 ### 编译文件并测试功能
 
@@ -282,9 +365,9 @@ int main(int argc, char *argv[])
 
 2. 输入`gcc -o reverse reverse.c -Wall`进行编译
 
-3. 输入`sudo chmod 777 test-reverse.sh`对测试脚本的权限进行修改
+3. 输入`sudo chmod 777 test-reverse.sh`对当前测试脚本的权限进行修改
 
-   (你可能还需要输入`sudo chmod 777 ../tester/run-tests.sh`)
+   (你可能还需要输入`sudo chmod 777 ../tester/*`将其他测试脚本的权限设为最高)
 
 4. 输入`./test-reverse.sh`进行测试。
 
@@ -294,62 +377,50 @@ int main(int argc, char *argv[])
 
 ## Kernel Hacking介绍
 
-老师的配置教程如下:
-
-1. 获取最新的xv6资源
-
-    (首先记得在`Xv6-Syscal`文件夹中打开i终端)
-```shell
-git clone git://github.com/mit-pdos/xv6-public.git
-```
-注意！我这边尝试该命令无效，我使用的是:
+1. 在`Xv6-Syscal`文件夹中打开终端(wsl使用VS code的集成终端会更方便，常用快捷键与Windows相同)
 ```shell
 git clone https://github.com/mit-pdos/xv6-public.git
 ```
-2. 测试电脑编译工具
+有同学反馈git仓库无法连接，建议使用校园网或流量热点，一般都是可以直接连接的。
+
+> 如果要将克隆的仓库上传到自己的仓库中，需要删除该仓库的`.git`隐藏文件夹。
+
+2. 测试编译工具
 ```shell
 objdump -i
 ```
-我的输出如下:
+​	我的输出如下:
 ![alt text](README.assets/image.png)
-如果第二行和我一样是`elf32-i386`就没问题了
-```shell
-gcc -m32 -print-libgcc-file-name
-```
-这一步如果之前按照我的步骤安装了gcc，一定不会有问题的。
+​	如果第二行和我一样是`elf32-i386`就没问题了。如果正常完成[GNU配置](#GNU)，`gcc`版本一定不会有问题的。
 
 3. 编译xv6
-```shell
-./Xv6-master/make
-```
-注意！我这边验证有效的操作是
+
+​	打开刚刚克隆的文件夹，例如`xv6-public`
+
 ```shell
 cd xv6-public
 make
 ```
 4. 安装`qemu`虚拟机
-(老师的命令过时了，为防止误操作已略去)
 ```shell
 sudo apt-get install qemu-system
 ```
-本命令来自[官网](https://www.qemu.org/download/#linux)
+(原先的命令已过时，[官网](https://www.qemu.org/download/#linux)已经更新了安装方式)
 
 5. 用虚拟机启动Xv6
+
 ```shell
 make qemu
 ```
 
 ### 开始实验
 
-在`Xv6-Syscal`中打开终端。
+在文件夹`Xv6-Syscal`中打开终端。
 
-首先，把刚刚的文件夹`xv6-public`改名为`src`。
+首先，手动把刚刚的文件夹`xv6-public`改名为`src`，并修改测试文件权限。
 
 ```shell
 sudo chmod 777 test-getreadcount.sh
-sudo chmod 777 ../tester/run-tests.sh
-sudo chmod 777 ../tester/xv6-edit-makefile.sh
-sudo chmod 777 ../tester/run-xv6-command.exp
 ./test-getreadcount.sh
 ```
 
@@ -359,7 +430,9 @@ sudo chmod 777 ../tester/run-xv6-command.exp
 
 这是正常的，因为`getreadcount()`函数需要我们自己实现。
 
-可以自己查看官方的[介绍](https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6)，你会发现与老师提供的一摸一样...
+这一部分实验建议参考Xv6官方的[介绍](https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6)，相比于现在的介绍多了一些Tips和教学视频。
+
+### 功能分析
 
 看一下test_1.c代码：
 
@@ -404,7 +477,12 @@ struct stat {
 
 这里，首先把所有文件分为了`目录`，`文件`和`设备`(Unix系统中，一般把设备看作特殊的文件对象)，这里所谓的`short type`就是以上3种类型之一。接下来，定义了`dev`设备编号，`ino`文件`incde`号，别名个数和文件大小。
 
-最后，`user.h`就是`getreadcount()`本应该存在的地方。
+系统调用至少需要修改以下文件:
 
-可以看到，这里已经实现了许多系统调用，例如`open()`，`close()`等
+| 文件      | 简介                        |
+| --------- | --------------------------- |
+| usys.S    | 提供系统调用入口            |
+| syscall.h | 定义系统调用编号SYS_\<name> |
+|           |                             |
+|           |                             |
 
