@@ -3,6 +3,15 @@
         "types.h": "c",
         "stat.h": "c",
         "user.h": "c",
-        "syscall.h": "c"
+        "syscall.h": "c",
+        "x86.h": "c",
+        "proc.h": "c",
+        "mmu.h": "c",
+        "memlayout.h": "c",
+        "param.h": "c",
+        "defs.h": "c",
+        "date.h": "c",
+        "spinlock.h": "c",
+        "fcntl.h": "c"
     }
 }
