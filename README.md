@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
 
 ## 下载实验文件
 
-1. 点击[链接](https://seunic-my.sharepoint.cn/personal/101011912_seu_edu_cn/_layouts/15/download.aspx?SourceUrl=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs/Xv6.labworks.7z)下载并解压`labworks`，重命名为`projects`
+1. 点击[链接](https://seunic-my.sharepoint.cn/personal/101011912_seu_edu_cn/_layouts/15/onedrive.aspx?id=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs/Xv6.labworks.7z&parent=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs)下载并解压`labworks`，重命名为`projects`
 
 ```shell
 cd ~
