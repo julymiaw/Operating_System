@@ -11,8 +11,9 @@
 ```
  gcc -o seuunzip seuunzip.c -Wall -Werror
 ```
-运行
+运行（第1行在第1次运行前调用即可）
 ```
+sudo chmod 777 test-seuunzip.sh 
 ./test-seuunzip.sh
 ```
 如果你需要直接对某个数据进行检测，找到`test\?.run`, 将其中的内容输入命令行即可
