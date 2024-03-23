@@ -3,6 +3,10 @@
 希望大家不要抄袭  <s>记得删注释</s>
 
 关于运行与测试：以seuunzip为例 <br>
+进入目录
+```
+ cd seuunzip
+```
 编译
 ```
  gcc -o seuunzip seuunzip.c -Wall -Werror
@@ -11,4 +15,4 @@
 ```
 ./test-seuunzip.sh
 ```
-如果你需要直接对某个数据进行检测，找到`test\?.run`输入命令行即可
+如果你需要直接对某个数据进行检测，找到`test\?.run`, 将其中的内容输入命令行即可
