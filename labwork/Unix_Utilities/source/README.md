@@ -17,3 +17,5 @@ sudo chmod 777 test-seuunzip.sh
 ./test-seuunzip.sh
 ```
 如果你需要直接对某个数据进行检测，找到`test\?.run`, 将其中的内容输入命令行即可
+
+注：本人seuzip的代码面向测试数据编程痕迹有些明显 <s>（但是也不是那么明显，如需代码请提出）</s>
