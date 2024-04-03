@@ -2,7 +2,9 @@
 
 本文包含以下几个部分：
 
-首先，课前准备部分，为使用Windows的同学提供了Linux虚拟机的安装教程，并根据自己在配置环境时遇到的问题和解决方法，希望能帮助同学们少走一些弯路。此外，还包括实验文件的下载以及Xv6的下载。后续可能还会添加其他内容。
+首先，在课前准备部分，为使用Windows的同学提供了Linux虚拟机的安装教程，并根据自己在配置环境时遇到的问题，提供了解决方法，希望能帮助同学们少走一些弯路。
+
+此外，在实验指引部分，以第一次实验为例说明了c语言任务的实现方式与Xv6的Kernel Hacking操作方式等。
 
 # 课前准备教程
 
@@ -111,6 +113,63 @@ int main(int argc, char *argv[])
 ## 其他配置
 
 这一部分**不推荐**执行，但如果确实有相关需求，或许能帮忙少走一些弯路。
+
+### 右键快捷打开wsl(code)
+
+在Windows上安装VS code时，如果勾选了`添加到右键菜单`，可以看到在任何文件夹或目录空白位置上右键，都能选择在Windows上的VS code打开该位置。但是，如果我们想在Windows文件资源管理器中右键打开WSL中的VS code，需要一些额外的配置。这个过程涉及注册表，存在一定的危险性。
+
+首先，找到Windows上VS code的安装路径，我是:
+
+`C:\\Program Files\\Microsoft VS Code\\Code.exe`
+
+然后，新建一个文本文档，输入以下内容:
+
+```bash
+Windows Registry Editor Version 5.00
+
+; 通过 Code(WSL) 打开
+
+[HKEY_CLASSES_ROOT\Directory\shell\VSCode(WSL)]
+@="通过 Code(WSL) 打开"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Directory\shell\VSCode(WSL)\command]
+@="wsl.exe code ."
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode(WSL)]
+@="通过 Code(WSL) 打开"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode(WSL)\command]
+@="wsl.exe code ."
+
+[HKEY_CLASSES_ROOT\Directory\LibraryFolder\shell\VSCode(WSL)]
+@="通过 Code(WSL) 打开"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Directory\LibraryFolder\shell\VSCode(WSL)\command]
+@="wsl.exe code ."
+
+[HKEY_CLASSES_ROOT\Drive\shell\VSCode(WSL)]
+@="通过 Code(WSL) 打开"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\Drive\shell\VSCode(WSL)\command]
+@="wsl.exe code ."
+
+[HKEY_CLASSES_ROOT\*\shell\VSCode(WSL)]
+@="通过 Code(WSL) 打开"
+"Icon"="C:\\Program Files\\Microsoft VS Code\\Code.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\VSCode(WSL)\command]
+@="wsl wslpath -u "%1" |xargs code"
+```
+
+另存为**ANSI**编码，文件后缀名改为`.reg`(如不显示后缀名，在文件资源管理器中修改显示设置)
+
+确认无误后，双击执行。顺利的话，可以在右键菜单中看到该选项。
+
+> 使用Win 11的同学，可能会发现右键菜单选项较少，每次都需要选择"显示更多选项"。如果想要恢复Win 10风格的右键菜单，可通过[这篇文章](https://www.xda-developers.com/how-to-open-full-right-click-menu-by-default-windows-11/)修改
 
 ### 在Linux中安装Chrome浏览器
 
@@ -420,6 +479,8 @@ if (output != stdout)
 
    (你可能还需要输入`sudo chmod 777 ../tester/*`将其他测试脚本的权限设为最高)
 
+   > 如果对权限设置更谨慎，可以用`chmod +x`替代`chmod 777`，前者只添加了执行权限。
+
 4. 输入`./test-reverse.sh`进行测试。
 
    如果一切顺利的话，你会看到以下结果
@@ -561,7 +622,7 @@ void syscall(void)
 extern int sys_getreadcount(void);
 ```
 
-这一行会告诉编译器，我们已经在其他文件中定义了该函数，编译器会自动去寻找，这样会防止未定义报错，但编译器依旧警告`找不到“sys_getreadcount”的函数定义`。看起来我们还需要在`sysfile.c`或`sysproc.c`中完成函数的定义。注意，尽管在这两个文件中定义中结果上是等价的，但在逻辑上，`sysfile.c`负责与文件系统相关的系统调用，如打开文件、读写文件、关闭文件等，而`sysproc.c`负责与进程管理相关的系统调用，例如创建进程、结束进程、等待进程等。让我们看一下测试用例test_1.c:
+这一行会告诉编译器，我们已经在其他文件中定义了该函数，编译器会自动去寻找，这样会防止未定义报错，但编译器依旧警告`找不到“sys_getreadcount”的函数定义`。看起来我们还需要在`sysfile.c`或`sysproc.c`中完成函数的定义。注意，尽管在这两个文件中定义中结果上是等价的，但在逻辑上，`sysfile.c`负责与文件系统相关的系统调用，如打开文件、读写文件、关闭文件等，而`sysproc.c`负责与进程管理相关的系统调用，例如创建进程、结束进程、等待进程等。让我们看一下测试用例`test_1.c`:
 
 ```c
 #include "types.h"
@@ -616,6 +677,22 @@ int getreadcount(void);
 sudo chmod 777 test-getreadcount.sh
 ./test-getreadcount.sh
 ```
+
+> 有使用VMware的同学在这一步出现了以下报错，可能是系统内置的包不同导致。
+>
+> ```shell
+> ./testgetreadcount.sh
+> doing one-time pre-test (use -s to suppress)
+> ../tester/xv6-edit-makefile.sh: line 6: gawk: command not found
+> make: *** No rule to make target 'clean'.  Stop.
+> make: Nothing to be done for 'xv6.img'.
+> make: *** No rule to make target 'fs.img'.  Stop.
+> ```
+>
+> 解决方法是手动安装缺少的包:
+> ```shell
+> sudo apt-get install gawk
+> ```
 
 正常情况下，因为在`getreadcount`实现部分没有对多线程进行针对性的处理，测试用例2可能会存在一种极端情况，两个进程同时读取了`readcount`的值并执行`++`操作，这样他们写回的值将会是原先加一，而不是加二，导致最后的结果不符，test1通过，test2不通过。但是，我这边即使反复尝试，甚至把次数增加到100倍，也没有出现同时访问导致的错误。
 

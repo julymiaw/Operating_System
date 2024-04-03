@@ -13,5 +13,11 @@
         "date.h": "c",
         "spinlock.h": "c",
         "fcntl.h": "c"
-    }
+    },
+    "cSpell.words": [
+        "Labworks",
+        "newdestlabel",
+        "providecommand",
+        "writefile"
+    ]
 }
