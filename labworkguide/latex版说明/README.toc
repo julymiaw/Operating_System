@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}课前准备教程}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}虚拟机配置}{4}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}VMware配置}{4}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}WSL + Ubuntu}{4}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}GNU编译环境安装}{5}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}文本编辑器安装}{6}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}配置git}{7}{subsubsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.2}其他配置}{7}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}在Linux中安装Chrome浏览器}{7}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}安装VS code插件(快捷打开网页)}{8}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}配置中文输入法(强烈不推荐)}{8}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}下载实验文件}{9}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}下载Xv6}{10}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Guide to Lab works}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}总体介绍------以Reverse为例}{11}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}需求分析}{11}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}功能实现}{12}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}编译文件并测试功能}{15}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Kernel Hacking介绍}{15}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}\texttt {usys.S}}{16}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}\texttt {syscall.h}}{18}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}\texttt {syscall.c}}{18}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}\texttt {sysfile.c}}{20}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}\texttt {user.h}}{21}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}测试功能}{21}{subsubsection.2.2.6}%
