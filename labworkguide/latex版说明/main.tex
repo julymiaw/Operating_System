@@ -1,120 +1,53 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-%
-\documentclass[
-]{article}
-\usepackage{amsmath,amssymb}
-\usepackage{iftex}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\newenvironment{Shaded}{}{}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
-\usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\usepackage{bookmark}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
-\hypersetup{
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\usepackage[UTF8]{ctex}
+\documentclass[fontset=ubuntu]{ctexart}
+\usepackage[a4paper,margin=1in,headheight=13pt]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
 \usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{color}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\usepackage{listings}
+\lstset{
+  language=C,
+  basicstyle=\ttfamily,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{cyan},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  literate={--}{{\texttt{-{}-}}}2
+}
+\usepackage{biblatex}
+\addbibresource{reference.bib}
+\let\oldhref\href{}
+\renewcommand{\href}[2]{\oldhref{#1}{\textit{#2}}}
 
-\title{实践指导}
-\author{吴清晏(61522314) \\ 东南大学吴健雄学院}
+\usepackage{titlesec}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% 调整段落间距
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% 设置页码位置
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt} % 添加页眉下的横线
+\lhead{\leftmark} % 在左侧页眉显示当前章节
+\rhead{\rightmark} % 在右侧页眉显示当前小节
+
+\title{操作系统实践指导 \\ \large Guide to Labworks by WQY}
+\author{吴清晏 (61522314) \\ 东南大学吴健雄学院}
 
 \date{}
 
@@ -123,875 +56,629 @@
 \begin{document}
 
 \maketitle
+\thispagestyle{empty}
 
 \newpage
 \renewcommand{\abstractname}{\LARGE\textbf{前言}}
+\newgeometry{margin=1.2in}
 \begin{abstract}\large
-	~\\
-	感谢您使用《Guide to Labworks by WQY》！
+    \vspace{1cm}
+    \noindent 感谢您使用《Guide to Labworks by WQY》！
 
-	本文由吴健雄学院22级吴清晏编写，希望能帮助同学们顺利完成操作系统实验的准备工作，加深对操作系统的理解。本文包含以下几个部分：
+    本文由吴健雄学院22级吴清晏编写，希望能帮助同学们顺利完成操作系统实验的准备工作，加深对操作系统的理解。
 
-	首先，课前准备部分，为使用Windows的同学提供了Linux虚拟机的安装教程，并根据自己在配置环境时遇到的问题和解决方法，希望能帮助同学们少走一些弯路。此外，还包括实验文件的下载以及Xv6的下载。后续可能还会添加其他内容。
+    首先，为使用Windows系统的同学提供了VMware虚拟机和WSL (Windows Subsystem for Linux)的安装教程，还包括实验文件与Xv6的下载以及运行环境配置。
+
+    然后，以Reverse实验为例，说明了C语言实验的一般流程，包括需求分析，功能实现和测试等。
+
+    最后，以Syscall实验为例，说明了Xv6实验的一般流程，包括Xv6系统的文件介绍等。
+
+    值得注意的是，Mac系统自带Unix内核，不需要额外配置，但Mac系统的终端和Linux系统的终端有一些不同，需要注意一些命令的区别。据同学所说，Mac电脑上Xv6的运行可能存在一些问题，主要是因为安装qemu存在一定的困难。即使如此，考虑到Mac电脑的性能，我依旧不推荐使用虚拟机。
 
 \end{abstract}
+\thispagestyle{empty}
+\restoregeometry{}
 
 \newpage
 \begin{center}
-	\tableofcontents
+    \tableofcontents
 \end{center}
+\thispagestyle{empty}
+
 \newpage
+\pagenumbering{arabic}
 
-\section{课前准备教程}\label{ux8bfeux524dux51c6ux5907ux6559ux7a0b}
+\section{课前准备教程}
 
-在开始前，需要明确你的需求：是仅仅想完成操作系统课程实验，还是想完全体验Linux的使用；是想仅使用命令行窗口，还是希望有一个完整的图形界面\ldots 无论如何，你都会需要的有：GNU编译环境安装，实验文件下载，Xv6配置。
+在开始前，请明确你是仅仅想完成《操作系统》的课程实验，还是想获得Linux的完整体验。考虑到大部分同学已经习惯了Windows系统的操作，我不推荐安装双系统，可通过Windows上的VMware体验带有图形桌面的Linux系统。VMware的性能有限，且在网络，硬件驱动等方面存在一定的配置难度，目前性能更高的解决方案是使用WSL (Windows Subsystem for Linux)，但其不包含图形化桌面，大部分操作需要通过命令行进行，如果没有足够的信心，建议还是使用VMware。无论如何你都会需要的部分有：GNU编译环境安装，实验文件下载，Xv6配置。
 
-此外，你可以选择在\texttt{wsl}和\texttt{VMware}中选择一个虚拟机平台(本教程仅针对Windows系统，因为Mac是Unix内核，不需要额外配置)
+\subsection{虚拟机配置}
 
-在这之后，你可以从\texttt{VS\ code}和其他文本编辑器(如\texttt{vim}，\texttt{nano}，\texttt{Emacs}等)中选择一种，个人推荐\texttt{VS\ code}。
+在配置虚拟机前，需要先选择Linux发行版。推荐使用Ubuntu，它是最流行的Linux发行版之一，有着丰富的社区支持和软件资源。如果你对Linux有一定的了解，可以选择其他发行版，如Debian，Fedora等。对于WSL，只推荐其明确支持的发行版，其他发行版可能会出现一些问题，如CentOS的较早版本会缺少一些关键的库。
 
-\subsection{虚拟机配置}\label{ux865aux62dfux673aux914dux7f6e}
+\subsubsection{VMware}
 
-\subsubsection{VMware配置}\label{vmwareux914dux7f6e}
+如果你需要运行带有图形界面的软件，那么VMware可以提供接近双系统的体验。网上有大量VMware的\href{https://zhuanlan.zhihu.com/p/617093823}{安装教程}。此外，还需要下载\textbf{.iso}格式的Linux安装镜像。推荐通过\href{https://mirrors.seu.edu.cn/}{东南大学镜像站}下载，建议选择\href{https://mirrors.seu.edu.cn/ubuntu-releases/22.04/ubuntu-22.04.4-desktop-amd64.iso}{Ubuntu22.04版本}。使用VMware的同学可跳过Git配置部分和其他配置部分。
 
-如果你的需求仅仅是操作系统实验，那么wsl就足够了，占用空间更小，启动更方便，文件传输更便捷，\textbf{但是！}wsl对GUI(图形界面)的支持极差，如果你需要在Linux环境下运行带有图形界面的软件(如使用Open
-3d库的Python脚本)，那么，你需要一个\textbf{完整}的Linux系统，包括图形界面。
+\subsubsection{WSL + Ubuntu}
 
-网上有大量VMware的安装教程，这里推荐\href{https://zhuanlan.zhihu.com/p/617093823}{这一篇}，安装完成后，你需要自己下载Linux安装镜像(.iso格式)，推荐通过东南大学最新搭建的\href{https://mirrors.seu.edu.cn/}{镜像站}下载，推荐\href{https://mirrors.seu.edu.cn/ubuntu-releases/22.04/ubuntu-22.04.4-desktop-amd64.iso}{Ubuntu22.04版本}。
-
-\subsubsection{WSL + Ubuntu}\label{wsl--ubuntu}
-
-\begin{quote}
-	注意！只有Win10/11才能使用wsl！
-\end{quote}
+\noindent 目前仅Win10/11可使用WSL，其中Win11的配置较简单。以下是一般情况下的配置步骤\cite{microsoft2023}：
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      搜索\texttt{启动或关闭Windows功能}，打开\texttt{适用于Linux的Windows子系统}和\texttt{虚拟机平台}，并根据提示重启。
-	\item
-	      打开Terminal，输入\texttt{wsl\ -\/-update}。
+    \item “Win + r”打开“运行”，输入“control”打开“控制面板”，搜索或在“程序和功能”中选择“启动或关闭Windows功能”，勾选“适用于Linux的Windows子系统”和“虚拟机平台”。
+    \item “运行”中输入“cmd”打开终端，在终端中输入“\texttt{wsl\ --update}”。Win11中会自动安装Ubuntu，Win10中需要输入“\texttt{wsl.exe\ --list\ --online}”列出所有可用发行版，推荐选择\texttt{Ubuntu}。安装成功后，Win10与Win11操作没有区别。
+    \item 安装过程中，根据提示输入用户名和密码。用户名中不能出现英文大写，\textbf{密码默认隐藏}！
+    \item 安装完成后，通过“\texttt{sudo\ passwd}”设置管理员密码，推荐采用与当前用户一样的密码，防止遗忘。为了防止误操作，平时尽量使用普通用户，需要管理员权限时使用“\texttt{sudo\ \textless{}command\textgreater{}}”。
+    \item WSL默认安装到C盘，可通过在Windows终端中输入以下代码迁移到指定位置：
+          \begin{lstlisting}
+wsl --shutdown  # 关闭所有虚拟机
+wsl --export Ubuntu <path>  # 导出虚拟机到指定位置
+wsl --unregister Ubuntu  # 卸载原虚拟机
+wsl --import Ubuntu <path> <new-path>  # 从刚刚位置导入虚拟机
+    \end{lstlisting}
 
-	      Tips:
-	      \begin{quote}
-		      有时会显示\texttt{没有安装的分发版}，首先按照提示输入\texttt{wsl.exe\ -\/-list\ -\/-online}查看可以安装的系统，输入\texttt{wsl.exe\ -\/-install\ \textless{}系统名\textgreater{}}完成安装，推荐选择\texttt{Ubuntu}
-	      \end{quote}
-
-	      \begin{quote}
-		      如果你的电脑近期重新安装过\texttt{家庭版}系统，有可能出现\texttt{注册表缺失}报错，解决方法为安装\href{https://software.seu.edu.cn/soft/detail/18}{Win11专业版}，安装完成后在\texttt{启动或关闭Windows功能}页面勾选\texttt{Hyper-V}，并重新打开两个功能。
-	      \end{quote}
-	\item
-	      在安装过程中，提示输入用户名(不能有大写)和密码。
-
-	      \textbf{在Linux系统中，密码默认隐藏，记住自己输了几位！}
-
-	      \begin{quote}
-		      如果未完成用户设置就关闭了Ubuntu，将默认登录为root用户。
-
-		      通过\texttt{passwd}命令设置root密码后，可通过\texttt{adduser\ \textless{}username\textgreater{}}添加用户，之后需要通过\texttt{adduser\ \textless{}username\textgreater{}\ sudo}命令给新用户添加管理员权限。
-
-		      如果希望默认登录为普通用户(而不是root用户)，可通过\texttt{ubuntu\ config\ -\/-default-user\ \textless{}username\textgreater{}}设置默认登录用户，注意这一行命令不是在Ubuntu，而是在Windows的\texttt{Terminal}或\texttt{Command}终端运行的。
-
-		      (以上指令请替换\textless{}username\textgreater 为用户名)
-	      \end{quote}
-	\item
-	      在Ubuntu中，大部分命令都需要管理员权限(sudo)，但现在还没有设置管理员(root用户)密码，可通过\texttt{sudo\ passwd}设置，推荐采用与当前用户一样的密码，防止混淆。
+          以上步骤同样可用于保存虚拟机备份和在不同设备间迁移虚拟机。
 \end{enumerate}
 
-\subsubsection{GNU编译环境安装}\label{gnuux7f16ux8bd1ux73afux5883ux5b89ux88c5span-idgnuspan}
+\noindent Tips:
+\vspace{-0.5cm}
+\begin{itemize}
+    \item 如果近期重新安装过“Win11家庭版”系统，有可能报错\texttt{注册表缺失}，最简单的方法是升级到\href{https://software.seu.edu.cn/soft/detail/18}{Win11专业版}，安装完成后在“启动或关闭Windows功能”页面勾选“Hyper-V”，关闭并重新打开两个功能。
+    \item 部分情况下Ubuntu默认登录为root用户。可通过以下操作创建有“sudo”权限的普通用户，并设为默认用户。该设置在下一次启动WSL时生效。
+          \begin{enumerate}
+              \item 通过“passwd”命令设置root密码。
+              \item 通过“\texttt{adduser\ \textless{}username\textgreater{}}”添加用户。
+              \item 通过“\texttt{adduser\ \textless{}username\textgreater{}\ sudo}”给新用户添加管理员权限。
+              \item 在Windows终端输入“\texttt{ubuntu\ config\ --default-user\ \textless{}username\textgreater{}}”
+          \end{enumerate}
+\end{itemize}
+
+\subsection{GNU编译环境安装}
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item \label{GNU}
-	      进入Ubuntu，输入\texttt{sudo\ apt-get\ update}更新，根据提示输入管理员密码。
-	\item
-	      输入\texttt{sudo\ apt-get\ install\ build-essential\ gdb}
-
-	      \begin{quote}
-		      build-essential包括了\texttt{gcc},\texttt{g++}和\texttt{make}，其中\texttt{gcc}和\texttt{g++}分别为\texttt{c语言}和\texttt{c++}的编译器，\texttt{make}可以编译带有\texttt{makefile}文件的开源软件代码。
-
-		      GDB的全称是GNU Debugger，之后我们使用的VS
-		      code提供的断点调试等功能就是基于GDB的。
-	      \end{quote}
+    \item 输入“sudo apt-get update”更新软件源列表
+    \item 输入“sudo apt-get install build-essential gdb”安装GNU编译环境和调试工具
 \end{enumerate}
 
-\subsubsection{文本编辑器安装}\label{ux6587ux672cux7f16ux8f91ux5668ux5b89ux88c5}
+\noindent Tips:
+\vspace{-0.5cm}
+\begin{itemize}
+    \item build-essential包括了gcc，g++和make，其中gcc和g++分别为c和c++的编译器，make可以编译带有makefile文件的开源软件代码，后续将安装的qemu就通过make编译并启动。
+    \item GDB的全称是GNU Debugger，VS code等IDE提供的断点调试等功能就是基于GDB的。
+\end{itemize}
 
-Ubuntu系统一般已经默认安装了vim和nano，CentOS系统一般只内置了vi，但通过自带的包管理器可以很方便的安装。\texttt{vim}、\texttt{emac}和\texttt{nano}都是基于命令行的文本编辑器，而\texttt{Gnome}和\texttt{VS\ code}都拥有图形界面，可以使用鼠标辅助编辑，也可以粘贴多行文本。
+\subsection{文本编辑器或IDE安装}
 
-vim等命令行教程很多，重点是记住快捷键的使用，大部分Linux发行版已内置，无需额外安装。
+文本编辑器仅支持最基本的功能，如代码高亮和自动格式化等。IDE可以运行和调试代码，但过于复杂。VS code介于两者之间，其功能比文本编辑器强大，但学习成本比IDE低。更重要的是，WSL原生支持VS code，更符合Windows使用习惯。
 
-Gnome是GNOME桌面的默认文本编辑器，考虑到wsl对GUI的支持程度，个人感觉很鸡肋。如果需要有图形界面的文本编辑器，推荐直接使用\texttt{VS\ code}。
+\subsubsection{文本编辑器}
 
-在安装wsl版本的VS
-code前，需要先在Windows上\href{https://code.visualstudio.com/}{安装VS
-	code}，安装时可勾选\texttt{添加到右键菜单}
+Ubuntu系统已默认安装了vim和nana，在终端中输入“vim”或“nano”即可打开。vim是一个上限很高的文本编辑器，但仅支持键盘控制，习惯鼠标操作的Windows用户可能很难适应。nano是一个更简单的文本编辑器，所有需要的快捷键会显示在页面底部，适合初学者使用。
+
+这两款文本编辑器都是面向命令行的，面向图形界面的文本编辑器往往与图形界面共同安装，但WSL也支持Gnome文本编辑器等图形界面内置工具。
+
+Gnome文本编辑器的安装方式是“sudo apt install gnome-text-editor -y”，安装成功后可通过“gnome-text-editor <file-name-or-path>”打开指定文件。该文本编辑器类似Windows上的记事本，支持鼠标操作，但功能较为简单。
+
+\subsubsection{Visual Studio Code}
+
+VS Code是一款由微软开发的轻量级代码编辑器，支持多种编程语言，拥有丰富的插件和主题。安装步骤如下：
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      在wsl中输入\texttt{code\ .}即可完成VS
-	      code安装，注意中间有\textbf{空格}。
+    \item 先在Windows中\href{https://code.visualstudio.com/insiders/}{安装VS code}，推荐选择“System Installer”版本。安装时建议勾选“添加到右键菜单”。安装完成后，打开VS code，点击左侧扩展按钮，搜索“Chinese”，安装中文语言插件。网络上有大量VS Code的配置教程，这里不做详细介绍。
+    \item 在wsl中输入“code\ .”，注意中间有空格。这行命令在当前目录下打开VS Code，首次运行会自动完成VS Code的初始化。% chktex 26
+    \item 在VS Code窗口的顶部菜单选择“文件”$\rightarrow$“打开文件夹”，输入“\~{}”，“\~{}”代表个人目录。
+    \item 通过VS Code左侧工具栏的资源管理器创建文件“helloworld.c”，输入以下代码：
+          \begin{lstlisting}
+#include <stdio.h>
+int main(int argc, char *argv[])
+{
+    printf("Hello World\n");
+    return 0;
+}
+          \end{lstlisting}
+          保存后，在左侧工具栏选择“运行和调试”，选择 (GDB/LLDB) C/C++，点击绿色的三角形运行代码。期间，需要根据提示安装C/C++扩展。运行时，会自动打开底部集成终端，终端已经打开了两个窗口：
+          \begin{enumerate}
+              \item C/C++: gcc生成活动文件
 
-	      (其实该命令主要用于在当前目录下启动VS code，首次使用自动安装)
+                    \textasteriskcentered{}正在执行任务: C/C++: gcc 生成活动文件
 
-	      \begin{quote}
-		      如果使用较老的系统版本(如CentOS7)，可能无法正常安装VS
-		      code，因为最新版的VS
-		      code需要Glibc的版本大于等于2.28。推荐WSL上不要折腾老系统，换个新点的Linux。
-	      \end{quote}
-	\item
-	      在VS
-	      code中选择\texttt{文件}-\textgreater{}\texttt{打开文件夹}，输入\texttt{\textasciitilde{}}打开用户目录，新建\texttt{test.c}，输入以下内容
+                    正在启动生成$\ldots$
 
-	      (可根据提示安装C/C++插件)
+                    /usr/bin/gcc -g /home/july/helloworld.c -o /home/july/helloworld
+
+                    生成已成功完成。
+
+                    \textasteriskcentered{}终端将被任务重用，按任意键关闭。
+              \item cppdbg: helloworld
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=\textwidth]{./README.assets/cppdbg.png}
+                        \caption{cppdbg: helloworld}
+                    \end{figure}
+          \end{enumerate}
+          如果输出与上图相同，说明GCC编译器和GDB调试器已经安装成功，VS Code的C/C++扩展也已经安装成功。
 \end{enumerate}
 
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
-		\DataTypeTok{int}\NormalTok{ main}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ argc}\OperatorTok{,} \DataTypeTok{char} \OperatorTok{*}\NormalTok{argv}\OperatorTok{[])}
-		\OperatorTok{\{}
-		\NormalTok{    printf}\OperatorTok{(}\StringTok{"Hello World}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
-		\ControlFlowTok{return} \DecValTok{0}\OperatorTok{;}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
+\newpage{}
 
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      点击右上角按钮运行，在编辑器选项中选择\texttt{gcc}，若输出为\texttt{Hello\ World}，则说明\texttt{GNU}的配置正常。
-\end{enumerate}
+\subsection{Git配置}
 
-\subsubsection{配置git}\label{ux914dux7f6egit}
+Git是一个分布式版本控制系统，我们的Xv6下载就是通过Git进行的。Git的安装步骤如下：
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      Ubuntu默认已安装git，只需配置用户名和邮箱(改为自己的)
-	\item
-	      \texttt{git\ config\ -\/-global\ user.name\ "Your\ Name"}
-	\item
-	      \texttt{git\ config\ -\/-global\ user.email\ "youremail@domain.com"}
-	\item
-	      如果Windows上没有安装Git，点击\href{https://github.com/git-for-windows/git/releases/}{链接}下载并安装
-	\item
-	      \texttt{git\ config\ -\/-global\ credential.helper\ "/mnt/c/Program\textbackslash{}\ Files/Git/mingw64/bin/git-credential-manager.exe"}
-	\item
-	      可以尝试在VS Code中使用\texttt{源代码管理}进行推送与拉取
-	\item
-	      如果把Projects放在Git仓库中，可通过在文件夹中添加\texttt{.gitignore}文件，输入\texttt{test*}忽略所有测试用代码
+    \item 在Windows上，\href{https://git-scm.com/downloads}{下载Git}，安装时建议全部保持默认选项。
+    \item 如果后续希望在GitHub上托管代码，还需要配置用户名和邮箱。在终端中输入以下命令：
+          \begin{lstlisting}
+git config --global user.name "Your Name"
+git config --global user.email "youremail@domain.com"
+        \end{lstlisting}
+    \item 在wsl中输入“sudo apt-get install git”安装git。
 \end{enumerate}
 
-\begin{quote}
-	默认情况下，WSL会把虚拟机安装到C盘，但C盘往往空间比较紧张，如果希望把虚拟机安装到指定位置，可进行如下操作：
+\subsection{其他配置}
 
-	\begin{enumerate}
-		\def\labelenumi{\arabic{enumi}.}
-		\item \label{export}
-		      Windows
-		      Terminal输入\texttt{wsl\ -\/-shutdown}(\texttt{wsl\ -l\ -v}查看虚拟机状态)
-		\item
-		      确认关闭后，输入\texttt{wsl\ -\/-export\ Ubuntu\ D:\textbackslash{}wsl2.tar}(以D:\textbackslash wsl2.tar为例)
-		\item
-		      导出完成后卸载原虚拟机\texttt{wsl\ -\/-unregister\ Ubuntu}(假设虚拟机名称为Ubuntu)
-		\item
-		      \texttt{wsl\ -\/-import\ Ubuntu\ D:\textbackslash{}Ubuntu\_WSL\textbackslash{}\ D:\textbackslash{}wsl2.tar}(假设导入到D:\textbackslash Ubuntu\_WSL)
-	\end{enumerate}
-\end{quote}
+这一部分是非必须的，但是有可能使后续操作更简单，看大家的需求。
 
-(本部分参考了\href{https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment}{wsl官方教程})
+\subsubsection{将VScode (WSL)添加到右键菜单}
 
-\subsection{其他配置}\label{ux5176ux4ed6ux914dux7f6e}
+在文件资源管理器中可右键选择通过Windows上的VScode打开当前文件夹。但是，对于WSL虚拟机中的文件，我们希望使用WSL上的VScode打开。此外，对于Windows 11，许多类似选项被放在了“更多选项”中，个人更习惯Windows7风格的右键菜单。可通过修改注册表自定义右键菜单，修改前建议备份注册表，具体步骤见\href{https://zhuanlan.zhihu.com/p/695724154}{教程}。
 
-这一部分\textbf{不推荐}执行，但如果确实有相关需求，或许能帮忙少走一些弯路。
+\subsubsection{在WSL中安装Chrome浏览器}
 
-\subsubsection{在Linux中安装Chrome浏览器}\label{ux5728linuxux4e2dux5b89ux88c5chromeux6d4fux89c8ux5668}
+在实验文件中，有一些说明文档是html格式的，可以通过VS code查看，也可以选择在文件资源管理器中打开文件路径后，通过Windows上的浏览器打开。但是，如果一定想使用WSL中的浏览器，可根据官方提供的\href{https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps\#install-google-chrome-for-linux}{教程}操作。安装完成后，先不要着急打开浏览器，需要配置中文字体。如果现在直接打开，会出现大量警告信息，但配置完中文和输入法后大部分警告消失。剩余警告与Linux系统的省电模式有关，运行sudo apt-get install upower后警告完全消失\cite{wslissue2023}。
+
+\subsubsection{配置中文与中文输入法}
+
+如果你不习惯阅读英文报错信息，可以将Ubuntu的命令行语言设为英文\cite{monkeywie2021}。这不会影响输入命令的语法，只会影响一些报错和帮助信息的部分语句。你还可以安装中文输入法，并在刚刚安装的浏览器中使用。如果你没有安装任何WSL上的GUI应用，那么你不需要安装任何中文输入法。
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      输入\texttt{cd\ /tmp}打开临时目录
-	\item
-	      \texttt{wget\ https://dl.google.com/linux/direct/google-chrome-stable\_current\_amd64.deb}下载Chrome安装包
-	\item
-	      \texttt{sudo\ apt\ install\ -\/-fix-missing\ ./google-chrome-stable\_current\_amd64.deb}安装
-	\item
-	      \texttt{sudo\ apt-get\ install\ ttf-wqy-zenhei}安装中文字体
-	\item
-	      输入\texttt{google-chrome}启动浏览器
+    \item 输入“sudo apt install language-pack-zh-hans”安装中文语言包
+    \item 输入“sudo dpkg-reconfigure locales”，在弹出窗口中选择en\_US.UTF-8和zh\_CN.UTF-8。空格键选择，回车键确认，ESC键退出。下一步的默认语言就是Ubuntu的命令行语言，推荐选择中文 (zh\_CN.UTF-8)
+    \item 输入“sudo apt-get install fontconfig”安装字体配置工具
+    \item 将Windows的字体文件链接到Ubuntu，具体方法是：
+          \begin{enumerate}
+              \item 输入“sudo vim /etc/fonts/local.conf”创建配置文件，按“i”进入编辑模式，输入以下内容：
+                    \begin{lstlisting}[
+                basicstyle=\ttfamily,
+                columns=fullflexible,
+                commentstyle=\color{gray}\upshape,
+                stringstyle=\color{black},
+                identifierstyle=\color{darkblue},
+                keywordstyle=\color{cyan},
+                morekeywords={xmlns,version,type}
+              ]
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <dir>/mnt/c/Windows/Fonts</dir>
+  <dir>/usr/share/fonts</dir>
+  <dir>/usr/local/share/fonts</dir>
+  <dir prefix="xdg">fonts</dir>
+</fontconfig>
+              \end{lstlisting}
+
+              \item 按“ESC”退出编辑模式，输入“:wq”保存并退出
+          \end{enumerate}
+    \item 输入“fc-cache -f -v”刷新字体缓存，并通过在Windows终端中输入wsl --shutdown和wsl来重启Ubuntu。注意，如果电脑中包含不止一个wsl环境，可以通过wsl --set-default <distro>设置默认环境，设置后可通过“wsl”命令打开默认环境。
+    \item 输入“sudo apt install fcitx dbus-x11 im-config fcitx-sunpinyin adwaita-icon-theme-full”安装小企鹅输入法。
+    \item 输入“sudo vim \~{}/.profile”，在文件末尾添加以下内容，退出方式与刚刚相同。
+          \begin{lstlisting}[
+            basicstyle=\ttfamily,
+            columns=fullflexible,
+            commentstyle=\color{gray}\upshape,
+            stringstyle=\color{black},
+            identifierstyle=\color{darkblue},
+            keywordstyle=\color{cyan},
+            morekeywords={export}
+          ]
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export DefaultIMModule=fcitx
+fcitx-autostart &>/dev/null
+\end{lstlisting}
+    \item 输入“source \~{}/.profile”应用配置。
+    \item 输入“fcitx-config-gtk3”，现在应该能正常看到下图所示信息，说明配置成功。
+          \begin{figure}[htbp]
+              \centering
+              \includegraphics[width=0.6\textwidth]{./README.assets/fcitx.png}
+              \caption{fcitx配置信息}
+          \end{figure}
 \end{enumerate}
 
-\subsubsection{安装VS
-	code插件(快捷打开网页)}\label{ux5b89ux88c5vs-codeux63d2ux4ef6ux5febux6377ux6253ux5f00ux7f51ux9875}
+\section{实验文件下载}
 
-输入\texttt{code\ .}打开VS
-Code，在拓展程序部分，搜索并安装插件\texttt{Open\ Browser\ Preview}
+在下载实验文件前，请确保网络畅通，且可正常访问Github。如果无法稳定访问Github，可尝试“https://gitclone.com/”等镜像站点。
 
-\begin{quote}
-	Tips:
-
-	Chrome自带了网页翻译功能，若未能检测出英文网页，按\texttt{F12}进入开发者工具，选中\textless{}html\textgreater 右键添加属性\texttt{lang="en"}将网站标注为英文)
-\end{quote}
-
-\subsubsection{配置中文输入法(强烈不推荐)}\label{ux914dux7f6eux4e2dux6587ux8f93ux5165ux6cd5ux5f3aux70c8ux4e0dux63a8ux8350}
-
-如果你希望在Linux的浏览器上像Windows系统上一样输入中文，可以尝试以下配置。
-
-\textbf{该过程比较危险，推荐在尝试前先\hyperref[export]{导出备份}}
+\subsection{Xv6实验}
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      配置中文语言包
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \FunctionTok{sudo}\NormalTok{ apt install language{-}pack{-}zh{-}hans}
-		      \end{Highlighting}
-	      \end{Shaded}
-	\item
-	      编辑\texttt{/etc/locale.gen}，去掉\texttt{en\_US.UTF-8\ UTF-8} 及
-	      \texttt{zh\_CN.UTF-8\ UTF-8}前的注释符号
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \ExtensionTok{vim}\NormalTok{ /etc/locale.gen}
-		      \end{Highlighting}
-	      \end{Shaded}
-
-	      (按i编辑，\texttt{ESC}+\texttt{:wq}保存并退出)
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \FunctionTok{sudo}\NormalTok{ locale{-}gen }\AttributeTok{{-}{-}purge}
-		      \end{Highlighting}
-	      \end{Shaded}
-	\item
-	      安装输入法
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \FunctionTok{sudo}\NormalTok{ apt install fcitx fonts{-}noto{-}cjk fonts{-}noto{-}color{-}emoji dbus{-}x11}
-		      \end{Highlighting}
-	      \end{Shaded}
-	\item
-	      安装输入模式
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \FunctionTok{sudo}\NormalTok{ apt install }\OperatorTok{\textless{}}\NormalTok{Package}\OperatorTok{\textgreater{}}
-		      \end{Highlighting}
-	      \end{Shaded}
-
-	      其中package从\texttt{fcitx-libpinyin}，\texttt{fcitx-sunpinyin}，\texttt{fcitx-googlepinyin}中挑选一个
-	\item
-	      切换到root用户，并创建bus连接
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \FunctionTok{su}\NormalTok{ root}
-			      \ExtensionTok{dbus{-}uuidgen} \OperatorTok{\textgreater{}}\NormalTok{ /var/lib/dbus/machine{-}id}
-		      \end{Highlighting}
-	      \end{Shaded}
-	\item
-	      创建新文件\texttt{vim\ /etc/profile.d/fcitx.sh}，输入
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \CommentTok{\#!/bin/bash}
-			      \BuiltInTok{export} \VariableTok{QT\_IM\_MODULE}\OperatorTok{=}\NormalTok{fcitx}
-			      \BuiltInTok{export} \VariableTok{GTK\_IM\_MODULE}\OperatorTok{=}\NormalTok{fcitx}
-			      \BuiltInTok{export} \VariableTok{XMODIFIERS}\OperatorTok{=}\NormalTok{@im=fcitx}
-			      \BuiltInTok{export} \VariableTok{DefaultIMModule}\OperatorTok{=}\NormalTok{fcitx}
-
-			      \CommentTok{\#optional}
-			      \ExtensionTok{fcitx{-}autostart} \OperatorTok{\&\textgreater{}}\NormalTok{/dev/null}
-		      \end{Highlighting}
-	      \end{Shaded}
-	\item
-	      在Windows终端中通过\texttt{wsl\ -\/-shutdown}+\texttt{wsl}重启虚拟机
-	\item
-	      输入\texttt{fcitx-config-gtk3}，不出意外的话，界面上出现之前安装的输入法。可通过Global
-	      Config调整切换输入法的快捷键。(如果失败，只能从导出的备份重新尝试)
-	\item
-	      打开浏览器，验证输入法功能是否正常
-
-	      \begin{Shaded}
-		      \begin{Highlighting}[]
-			      \NormalTok{google{-}chrome}
-		      \end{Highlighting}
-	      \end{Shaded}
+    \item 从董恺老师提供的\href{https://seunic-my.sharepoint.cn/personal/101011912_seu_edu_cn/_layouts/15/onedrive.aspx?id=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs/Xv6.labworks.7z&parent=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs}{链接}下载实验文件夹，解压缩到WSL中的个人目录下 (如\~{}/projects)。
+    \item 按照\href{https://www.overleaf.com/project/604ac6e691e6cf4d8ba0b24a}{实验指导书}的要求，完成普通实验，如Reverse。
+    \item 对于Kernel-Hacking实验，在VS code集成终端中输入“cd \~{}/projects/Xv6-Syscall”。
+    \item 输入“git clone https://github.com/mit-pdos/xv6-public.git”获取实验文件，网络顺畅的话，当前目录下会增加一个名为xv6-public的文件夹，将其改名为“src”。
+    \item 输入“objdump -i”测试编译工具。若按照操作流程完成了GNU编译环境安装，应获得如下输出（语言可能存在差异，但请确保输出包含“elf32-i386”）。
+          \begin{figure}[htbp]
+              \centering
+              \includegraphics[width=\textwidth]{./README.assets/objdump.png}
+              \caption{测试编译工具输出}
+          \end{figure}
+    \item 输入“sudo apt-get install qemu-system”安装qemu虚拟机
+    \item 输入“cd src”进入文件夹，再输入“make”编译。编译完成后，输入“make qemu”运行Xv6系统。注意，以上过程均应在普通用户状态下执行，如果在root用户的个人目录下，会出现意料之外的权限问题。
 \end{enumerate}
 
-\subsection{下载实验文件}\label{ux4e0bux8f7dux5b9eux9a8cux6587ux4ef6}
+\newpage{}
+
+\section{实验指南}
+
+本部分旨在对\href{https://www.overleaf.com/read/bfhkrzwmhrrs}{《Guide to Xv6 Labworks》}中提到的两个实验进行说明，以帮助同学们了解实验的一般流程。希望大家先独立思考，如果遇到无法解决的问题，再尝试通过我的教程解决。
+
+\subsection{Reverse实验}
+
+在VS code中打开”~”目录，在”./projects/Reverse”下新建”reverse.c”文件。
+
+\subsubsection{需求分析}
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      点击\href{https://seunic-my.sharepoint.cn/personal/101011912_seu_edu_cn/_layouts/15/onedrive.aspx?id=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs/Xv6.labworks.7z&parent=/personal/101011912_seu_edu_cn/Documents/教学/Teaching/操作系统/OSC_labs}{链接}下载并解压\texttt{labworks}，重命名为\texttt{projects}
+    \item 支持3种输入形式：
+          \begin{enumerate}
+              \item \texttt{./reverse}
+              \item \texttt{./reverse input.txt}
+              \item \texttt{./reverse input.txt output.txt}
+          \end{enumerate}
+    \item 对于输入的数据 (命令行/文件)，\textbf{不能}假设句子长度和句子个数。
+    \item 处理以下4种错误：
+          \begin{enumerate}
+              \item 输入参数过多：“usage: reverse <input> <output>”
+              \item 文件无法打开：“reverse: cannot open file <filename>”（<filename>为打不开的文件名）
+              \item 输入相同文件：“reverse: input and output file must differ”（不能仅通过文件名判断）
+              \item 内存分配失败：“malloc failed”
+          \end{enumerate}
+          用“fprintf(stderr, <error message>\textbackslash{}n);”输出错误并“exit(1);”返回状态码1。% chktex 36
 \end{enumerate}
 
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\BuiltInTok{cd}\NormalTok{ \textasciitilde{}}
-		\ExtensionTok{code}\NormalTok{ .}
-	\end{Highlighting}
-\end{Shaded}
+\noindent Tips:
+\vspace{-0.5cm}
+\begin{itemize}
+    \item 其中，stderr是一种特殊的输出流，与之类似的输出流是stdout，stdout类似c++中cout。
+    \item 返回的状态码正常为0，调用exit函数会立即终止并返回指定状态码。
+\end{itemize}
+
+\subsubsection{功能实现}
+
+\begin{lstlisting}
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <sys/stat.h>
+\end{lstlisting}
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      将文件夹从Windows文件资源管理器拖到VS
-	      code左侧的文件窗格中，右键选择在资源管理器中打开。接下来就可以像使用Windows一样打开\texttt{reverse}文件夹，点击README.html查看实验说明。
+    \item 处理错误“输入参数过多”
+          \begin{lstlisting}
+// reverse参数过多时打印usage: reverse <input> <output>并返回1
+if (argc > 3) {
+    fprintf(stderr, "usage: reverse <input> <output>\n");
+    exit(1);
+}	
+    \end{lstlisting}
+    \item 处理错误“文件无法打开”
+          \begin{lstlisting}
+// 输入流和输出流指针
+FILE *input = stdin, *output = stdout;
+// 尝试打开输入文件
+if (argc >= 2) {
+    input = fopen(argv[1], "r");
+    if (input == NULL) {
+        fprintf(stderr,"reverse: cannot open file '%s'\n",argv[1]);
+        exit(1);
+    }
+}
+// 尝试打开输出文件
+if (argc == 3) {
+    output = fopen(argv[2], "w");
+    if (output == NULL) {
+        fprintf(stderr,"reverse: cannot open file '%s'\n",argv[2]);
+        exit(1);
+    }
+}
+          \end{lstlisting}
+    \item 通过头文件”<sys/stat.h>”提供的stat函数处理错误“输入相同文件”
+          \begin{lstlisting}
+struct stat stat1, stat2;
+stat(argv[1], &stat1);
+stat(argv[2], &stat2);
+if (stat1.st_ino == stat2.st_ino) {
+    fprintf(stderr,"reverse: input and output file must differ\n");
+    exit(1);
+}
+    \end{lstlisting}
+          \noindent Tips:
+          \vspace{-0.3cm}
+          \begin{itemize}
+              \item stat函数可获取文件的状态信息，其中st\_ino是文件的inode号，用于唯一标识文件。这样可以处理不同文件名对应相同文件的情况，如软链接。
+              \item 在C语言中，函数传值常常通过引用参数实现，这与Python等语言使用多个返回值的习惯不同。这种方式的优点是可以减少内存开销，缺点是可能会使代码更难理解。
+          \end{itemize}
+    \item 处理错误“内存分配失败”
+          \begin{lstlisting}
+// 记录行数和初始容量
+int capacity = 10;
+char **lines = malloc(capacity * sizeof(char *));
+if (lines == NULL) {
+    fprintf(stderr, "malloc failed\n");
+    exit(1);
+}
+          \end{lstlisting}
+    \item 实现缓冲区满自动扩容
+          \begin{lstlisting}
+int num_lines = 0, 
+size_t len = 0;
+while (1) {
+    if (num_lines == capacity) {
+        capacity *= 2;
+        lines = realloc(lines, capacity * sizeof(char *));
+        if (lines == NULL) {
+            fprintf(stderr, "malloc failed\n");
+            exit(1);
+        }
+    }
+    if (getline(&lines[num_lines], &len, input) == -1)
+        break;
+    num_lines++;
+}
+          \end{lstlisting}
+          \noindent Tips:
+          \vspace{-0.3cm}
+          \begin{itemize}
+              \item “getline”函数在“len”设置为0时，会自动扩充输入缓冲区并更新“len”参数。
+              \item 如果想测试零参数下的效果，可通过“Ctrl+D”终止输入流，此时“getline”函数会返回-1。
+          \end{itemize}
+    \item 将所有句子逆序放入输出流，释放内存并关闭文件
+          \begin{lstlisting}
+for (int i = num_lines - 1; i >= 0; i--) {
+    fprintf(output, "%s", lines[i]);
+    free(lines[i]);
+}
 
-	      \begin{quote}
-		      如果之前配置了Linux浏览器和VS code插件，可选中文件并右键，选择
+free(lines);
 
-		      \texttt{Preview\ In\ Default\ Browser}在Chrome中打开网页。
-	      \end{quote}
+if (input != stdin)
+    fclose(input);
+if (output != stdout)
+    fclose(output);
+    \end{lstlisting}
+          \noindent Tips:
+          \vspace{-0.3cm}
+          \begin{itemize}
+              \item 用malloc分配的内存一定要主动调用free函数进行内存释放，以防止内存泄漏。在程序终止时，操作系统会自动回收所有已分配资源，但主动回收有助于养成更好的代码习惯。
+              \item 文件操作完成后一定要调用fclose函数关闭文件，因为每个打开的文件会消耗一个文件描述符，文件描述符达到上限将无法打开新文件。
+              \item 当你发现电脑上有程序在运行过程中内存占用越来越大，说明发生了内存泄漏，可尝试终止程序并重新打开，利用操作系统完成资源回收。
+          \end{itemize}
 \end{enumerate}
 
-\emph{另一种方案:
-	直接克隆\href{https://github.com/julymiaw/Operating_System}{本仓库}(不推荐，因为仓库设置了gitignore，文件不全)}
-
-\subsection{下载Xv6}\label{ux4e0bux8f7dxv6}
-
-Xv6在后续的实验中将被使用，但它并不包含在刚刚的实验文件中。
+\subsubsection{编译文件并测试功能}
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      在\texttt{Xv6-Syscal}文件夹中打开终端
+    \item 选中文件，右键“在集成终端中打开”
+    \item 输入“gcc -o reverse reverse.c -Wall”进行编译
+    \item 输入“sudo chmod 777 test-reverse.sh”对当前测试脚本的权限进行修改
+    \item 输入“sudo chmod 777 ../tester/*”将其他测试脚本的权限设为最高 % chktex 26
 
-	      (wsl使用VS code的集成终端会更方便，常用快捷键与Windows相同)
+          \noindent Tips:
+          \vspace{-0.3cm}
+          \begin{itemize}
+              \item “-Wall”参数用于在编译时显示所有的警告信息，包括未使用的变量、未初始化的变量、可能的数组越界等潜在问题，有助于提高代码质量。
+              \item 可以用“chmod +x”替代“chmod 777”，前者只添加了执行权限。
+          \end{itemize}
+    \item 输入“./test-reverse.sh”进行测试。如果一切顺利的话，你会看到以下结果：
+          \begin{figure}[htbp]
+              \centering
+              \includegraphics[width=\textwidth]{./README.assets/test-reverse.png}
+              \caption{测试结果}
+          \end{figure}
 \end{enumerate}
 
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\FunctionTok{git}\NormalTok{ clone https://github.com/mit{-}pdos/xv6{-}public.git}
-	\end{Highlighting}
-\end{Shaded}
+\subsection{Syscall实验}
 
-有同学反馈git仓库无法连接，建议使用校园网或流量热点，一般都是可以直接连接的。
+打开下载实验文件时创建的“src”文件夹，可看到“makefile”和大量“.c”，“.h”，“.S”文件，在“make”编译后额外出现了“.d”和“.o”文件。“.S”或“.s”是汇编文件的后缀名，其中“.S”后缀的文件支持预处理命令(如“\#”开头的大写命令)。% chktex 36
 
-\begin{quote}
-	如果要将克隆的仓库上传到自己的仓库中，需要删除该仓库的\texttt{.git}隐藏文件夹。
-\end{quote}
+在进行系统调用的过程中，我们主要关心的文件有\cite{xv6official}：
 
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      测试编译工具
-\end{enumerate}
+\begin{center}
+    \begin{tabularx}{0.8\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+        \toprule
+        文件名    & 功能简介                     \\
+        \midrule
+        usys.S    & 提供用户态与内核态转换的接口 \\
+        syscall.h & 定义系统调用号               \\
+        syscall.c & 转发用户发起的系统调用到内核 \\
+        sysfile.c & 实现系统调用                 \\
+        sysproc.c & 另一种实现系统调用的选项     \\
+        user.h    & 定义系统调用的参数传递方式   \\
+        \bottomrule
+    \end{tabularx}
+\end{center}
 
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\ExtensionTok{objdump} \AttributeTok{{-}i}
-	\end{Highlighting}
-\end{Shaded}
+接下来，我们将逐个分析这些文件，先观察系统原有的系统调用是如何实现的，再模仿原有的系统调用，实现“getReadCount”。当调用“getReadCount”时，返回read系统调用的总使用次数。
 
-我的输出如下:\\
-\includegraphics{./README.assets/SPYQufIx9qhJFmy.png}\\
-如果第二行和我一样是\texttt{elf32-i386}就没问题了。
+\newpage
+\subsubsection{usys.S}
 
-如果正常完成\hyperref[GNU]{GNU配置}，\texttt{gcc}版本一定不会有问题的。
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      编译xv6
-\end{enumerate}
-
-打开刚刚克隆的文件夹，例如\texttt{xv6-public}，再运行\texttt{make}编译
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\BuiltInTok{cd}\NormalTok{ xv6{-}public}
-		\FunctionTok{make}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-	\texttt{make}包含在之前安装的\texttt{build-essential}包中，当目录下有\texttt{makefile}文件时会自动根据文件指示逐行编译(若指明的\texttt{.c}文件已经编译为\texttt{.o}则跳过，不会重复编译)。在后续我们添加系统调用的过程中，如果添加了新的\texttt{.c}文件，需要修改\texttt{makefile}，加入新文件名，这样该文件可以在后续的\texttt{qemu}虚拟机窗口中作为可执行的命令被调用。
-\end{quote}
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      安装\texttt{qemu}虚拟机
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\FunctionTok{sudo}\NormalTok{ apt{-}get install qemu{-}system}
-	\end{Highlighting}
-\end{Shaded}
-
-(原先的命令已过时，\href{https://www.qemu.org/download/\#linux}{官网}已经更新了安装方式)
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      用虚拟机启动Xv6
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\FunctionTok{make}\NormalTok{ qemu}
-	\end{Highlighting}
-\end{Shaded}
-
-\section{Guide to Lab works}\label{guide-to-lab-works}
-
-\subsection{总体介绍------以Reverse为例}\label{ux603bux4f53ux4ecbux7ecd------ux4ee5reverseux4e3aux4f8b}
-
-在VS
-code中打开\texttt{\textasciitilde{}}目录，在\texttt{./projects/Reverse}下新建\texttt{reverse.c}文件。
-
-\subsubsection{需求分析}\label{ux9700ux6c42ux5206ux6790}
+这个文件包含以下3个部分：
 
 \begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      支持3种输入形式：
+    \item 头文件
+          \begin{lstlisting}
+#include "syscall.h" // 包含每个系统调用对应的编号($SYS_ ## name)
+#include "traps.h"   // 提供了($T_SYSCALL)的定义，此系统中为64。
+    \end{lstlisting}
+          \noindent 拓展信息：
+          \vspace{-0.3cm}
+          \begin{itemize}[listparindent=2em]
+              \item \$T\_SYSCALL
 
-	      \begin{itemize}
-		      \item
-		            \texttt{./reverse}
-		      \item
-		            \texttt{./reverse\ input.txt}
-		      \item
-		            \texttt{./reverse\ input.txt\ output.txt}
-	      \end{itemize}
-	\item
-	      对于输入的数据(命令行/文件)，\textbf{不能}假设\emph{句子长度}
-	      和\emph{句子个数}。
-	\item
-	      处理以下4种错误：
+                    在x86架构的计算机中，系统调用会触发一个陷阱（trap）。陷阱是一种特殊的中断，它会将CPU从用户态切换到内核态，并跳转到对应处理函数，函数地址由中断描述符表（IDT）提供，而\$T\_SYSCALL就是系统中断在IDT中的索引。
+              \item IDT
 
-	      \begin{itemize}
-		      \item
-		            输入参数过多：\texttt{usage:\ reverse\ \textless{}input\textgreater{}\ \textless{}output\textgreater{}}
-		      \item
-		            文件无法打开：\texttt{reverse:\ cannot\ open\ file\ \textquotesingle{}\textless{}filename\textgreater{}\textquotesingle{}}（其中\texttt{\textless{}filename\textgreater{}}为打不开的文件名）
-		      \item
-		            输入相同文件：\texttt{reverse:\ input\ and\ output\ file\ must\ differ}（不能仅通过文件名判断）
-		      \item
-		            内存分配失败：\texttt{malloc\ failed}
-	      \end{itemize}
+                    IDT在“trap.c”中定义，是一个长度256的gatedesc数组。“gatedesc”在“mmu.h”中定义，这是一个结构体，包括“off\_15\_0”和“off\_31\_16”，他们合起来表示中断处理程序在其所在段的偏移地址，以及“cs”（处理函数所在段）和“args”（参数数量）等。
+          \end{itemize}
+    \item 宏定义接口模板
+
+          “.\ globl name”使系统调用的名称成为全局变量，用户程序可以直接通过该名称进行系统调用。当该名称被使用时，自动把\$SYS\_ \#\# name放入“\%eax”，并发起“int”中断（“interupt”）。
+          \begin{lstlisting}[language={[x86masm]Assembler}]
+#define SYSCALL(name) \
+  .globl name; \
+  name: \
+    movl $SYS_ ## name, %eax; \
+    int $T_SYSCALL; \
+    ret
+    \end{lstlisting}
+          \noindent 拓展信息：
+          \vspace{-0.3cm}
+          \begin{itemize}[listparindent=2em]
+              \item \%eax
+
+                    “eax”（Extended Accumulator Register）是16位“ax”的32位扩展。除“\%eax”寄存器外，汇编中还有“\%ebx”，“\%ecx”和“\%edx”，但不存在“\%eex”或“\%efx”等。实际上，“b”指“base”（基底），“c”指“counter”，“d”指“data”。
+
+                    在x86架构的Linux中，“\%eax”负责传递系统调用的编号和执行完毕时的返回。
+              \item int
+
+                    大家可能会将其与c/c++中的int发生混淆。在汇编语言中，“int n”中“int”为“interrupt”指令的缩写，“n”为中断类型码。中断指令的执行往往包含以下步骤：
+                    \begin{enumerate}
+                        \item 指令指针（IP）和标志寄存器（FLAGS）入栈，其中FLAGS包含IF和TF
+                        \item 查找IDT中对应的陷阱门，获取中断处理函数的段选择子和偏移地址
+                        \item 将段选择子加载到代码段寄存器（CS），将偏移地址加载到指令指针（IP）
+                        \item 执行完成时，通过“iret”指令弹出IP和FLAGS，恢复CPU状态。
+                    \end{enumerate}
+              \item “IF”（Interrupt Flag）
+
+                    当“IF”为1时，允许响应可屏蔽中断。此处int指令会将IF设为0。
+
+              \item “TF”（Trap Flag）
+
+                    当“TF”为1时，CPU在执行每条指令后生成一个调试异常，通常用于单步调试。此处int指令会将TF设为0。
+          \end{itemize}
+    \item 通过宏定义模板声明系统调用
+
+          已经完成的系统调用均采用“SYSCALL\(name\)”宏定义，在此基础上实现getreadcount：
+          \begin{lstlisting}[language={[x86masm]Assembler}]
+SYSCALL(getreadcount)
+            \end{lstlisting}
+          注意句尾无分号。
 \end{enumerate}
 
-\begin{quote}
-	无论是哪一种错误，统一用\texttt{fprintf(stderr,\ "\textless{}error\ message\textgreater{}\textbackslash{}n");}输出错误并\texttt{exit(1);}返回状态码1。
-
-	其中，stderr是一种特殊的输出流，与之类似的输出流是stdout，stdout类似c++中cout。
-
-	返回的状态码正常为0，调用exit函数会立即终止并返回指定状态码。
-\end{quote}
-
-\subsubsection{功能实现}\label{ux529fux80fdux5b9eux73b0}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
-		\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
-		\PreprocessorTok{\#include }\ImportTok{\textless{}sys/stat.h\textgreater{}}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      处理错误``输入参数过多''
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\CommentTok{// 如果用户运行时reverse参数过多，则打印usage: reverse \textless{}input\textgreater{} \textless{}output\textgreater{}并退出，返回码为 1}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{argc }\OperatorTok{\textgreater{}} \DecValTok{3}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{    fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"usage: reverse \textless{}input\textgreater{} \textless{}output\textgreater{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
-		\NormalTok{    exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      处理错误``文件无法打开''
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\CommentTok{// 输入流，文件或命令行输入(Ctrl+D结束输入)}
-		\DataTypeTok{FILE} \OperatorTok{*}\NormalTok{input }\OperatorTok{=}\NormalTok{ stdin}\OperatorTok{;}
-
-		\CommentTok{// 输出流，文件或命令行输出}
-		\DataTypeTok{FILE} \OperatorTok{*}\NormalTok{output }\OperatorTok{=}\NormalTok{ stdout}\OperatorTok{;}
-
-		\CommentTok{// 如果提供输入文件，打开输入文件}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{argc }\OperatorTok{\textgreater{}=} \DecValTok{2}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{    input }\OperatorTok{=}\NormalTok{ fopen}\OperatorTok{(}\NormalTok{argv}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \StringTok{"r"}\OperatorTok{);}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{input }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{        fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"reverse: cannot open file \textquotesingle{}}\SpecialCharTok{\%s}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{,}\NormalTok{ argv}\OperatorTok{[}\DecValTok{1}\OperatorTok{]);}
-		\NormalTok{        exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-		\OperatorTok{\}}
-
-		\CommentTok{// 如果额外提供输出文件，尝试打开，并检查输入输出文件是否相同(用stat防止硬链接)}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{argc }\OperatorTok{==} \DecValTok{3}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{    output }\OperatorTok{=}\NormalTok{ fopen}\OperatorTok{(}\NormalTok{argv}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \StringTok{"w"}\OperatorTok{);}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{output }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{        fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"reverse: cannot open file \textquotesingle{}}\SpecialCharTok{\%s}\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{,}\NormalTok{ argv}\OperatorTok{[}\DecValTok{2}\OperatorTok{]);}
-		\NormalTok{        exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      通过头文件\texttt{\textless{}sys/stat.h\textgreater{}}提供的stat函数处理错误``输入相同文件''
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\KeywordTok{struct}\NormalTok{ stat stat1}\OperatorTok{,}\NormalTok{ stat2}\OperatorTok{;}
-		\NormalTok{stat}\OperatorTok{(}\NormalTok{argv}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \OperatorTok{\&}\NormalTok{stat1}\OperatorTok{);}
-		\NormalTok{stat}\OperatorTok{(}\NormalTok{argv}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \OperatorTok{\&}\NormalTok{stat2}\OperatorTok{);}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{stat1}\OperatorTok{.}\NormalTok{st\_ino }\OperatorTok{==}\NormalTok{ stat2}\OperatorTok{.}\NormalTok{st\_ino}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{    fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"reverse: input and output file must differ}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
-		\NormalTok{    exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      分配初始内存，当容量不够时自动扩容，处理错误``内存分配失败''
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\CommentTok{// 记录行数}
-		\DataTypeTok{int}\NormalTok{ num\_lines }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
-
-		\CommentTok{// 记录容量，初始为10}
-		\DataTypeTok{int}\NormalTok{ capacity }\OperatorTok{=} \DecValTok{10}\OperatorTok{;}
-
-		\CommentTok{// 用于存储行的数组}
-		\DataTypeTok{char} \OperatorTok{**}\NormalTok{lines }\OperatorTok{=}\NormalTok{ malloc}\OperatorTok{(}\NormalTok{capacity }\OperatorTok{*} \KeywordTok{sizeof}\OperatorTok{(}\DataTypeTok{char} \OperatorTok{*));}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{lines }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{    fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"malloc failed}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
-		\NormalTok{    exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-
-		\DataTypeTok{size\_t}\NormalTok{ len }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
-		\ControlFlowTok{while} \OperatorTok{(}\DecValTok{1}\OperatorTok{)} \OperatorTok{\{}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{num\_lines }\OperatorTok{==}\NormalTok{ capacity}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{        capacity }\OperatorTok{*=} \DecValTok{2}\OperatorTok{;}
-		\NormalTok{        lines }\OperatorTok{=}\NormalTok{ realloc}\OperatorTok{(}\NormalTok{lines}\OperatorTok{,}\NormalTok{ capacity }\OperatorTok{*} \KeywordTok{sizeof}\OperatorTok{(}\DataTypeTok{char} \OperatorTok{*));}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{lines }\OperatorTok{==}\NormalTok{ NULL}\OperatorTok{)} \OperatorTok{\{}
-		\NormalTok{            fprintf}\OperatorTok{(}\NormalTok{stderr}\OperatorTok{,} \StringTok{"malloc failed}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\OperatorTok{);}
-		\NormalTok{            exit}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-		\OperatorTok{\}}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{getline}\OperatorTok{(\&}\NormalTok{lines}\OperatorTok{[}\NormalTok{num\_lines}\OperatorTok{],} \OperatorTok{\&}\NormalTok{len}\OperatorTok{,}\NormalTok{ input}\OperatorTok{)} \OperatorTok{==} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{)}
-		\ControlFlowTok{break}\OperatorTok{;}
-		\NormalTok{    num\_lines}\OperatorTok{++;}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-	\texttt{getline}函数在\texttt{len}设置为0时，会自动扩充输入缓冲区并更新\texttt{len}参数。
-
-	如果想通过终端测试零参数下的效果，可通过\texttt{Ctrl+D}终止输入流，此时\texttt{getline}函数会返回-1。
-\end{quote}
-
-\begin{enumerate}[resume]
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      将获取的所有句子逆序放入输出流，释放内存并关闭文件
-\end{enumerate}
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=}\NormalTok{ num\_lines }\OperatorTok{{-}} \DecValTok{1}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textgreater{}=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i}\OperatorTok{{-}{-})} \OperatorTok{\{}
-		\NormalTok{    fprintf}\OperatorTok{(}\NormalTok{output}\OperatorTok{,} \StringTok{"}\SpecialCharTok{\%s}\StringTok{"}\OperatorTok{,}\NormalTok{ lines}\OperatorTok{[}\NormalTok{i}\OperatorTok{]);}
-		\NormalTok{    free}\OperatorTok{(}\NormalTok{lines}\OperatorTok{[}\NormalTok{i}\OperatorTok{]);}
-		\OperatorTok{\}}
-
-		\NormalTok{free}\OperatorTok{(}\NormalTok{lines}\OperatorTok{);}
-
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{input }\OperatorTok{!=}\NormalTok{ stdin}\OperatorTok{)}
-		\NormalTok{    fclose}\OperatorTok{(}\NormalTok{input}\OperatorTok{);}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{output }\OperatorTok{!=}\NormalTok{ stdout}\OperatorTok{)}
-		\NormalTok{    fclose}\OperatorTok{(}\NormalTok{output}\OperatorTok{);}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-	注意，与C++不同，C语言中用malloc分配的内存一定要主动调用free函数进行内存释放，文件需要主动关闭，这是比较好的代码习惯。
-\end{quote}
-
-\subsubsection{编译文件并测试功能}\label{ux7f16ux8bd1ux6587ux4ef6ux5e76ux6d4bux8bd5ux529fux80fd}
-
-\begin{enumerate}
-	\def\labelenumi{\arabic{enumi}.}
-	\item
-	      选中文件，右键``在集成终端中打开''
-	\item
-	      输入\texttt{gcc\ -o\ reverse\ reverse.c\ -Wall}进行编译
-	\item
-	      输入\texttt{sudo\ chmod\ 777\ test-reverse.sh}对当前测试脚本的权限进行修改
-
-	      (你可能还需要输入\texttt{sudo\ chmod\ 777\ ../tester/*}将其他测试脚本的权限设为最高)
-	\item
-	      输入\texttt{./test-reverse.sh}进行测试。
-
-	      如果一切顺利的话，你会看到以下结果
-
-	      \includegraphics{./README.assets/XQ1hLsDiR2Pnrwz.png}
-\end{enumerate}
-
-\subsection{Kernel Hacking介绍}\label{kernel-hackingux4ecbux7ecd}
-
-在Xv6的文件夹，有\texttt{makefile}和很多\texttt{.c}，\texttt{.h}，\texttt{.S}文件，在编译后额外出现了\texttt{.d}和\texttt{.o}文件。其中，\texttt{.c}是我们比较熟悉的c语言，\texttt{.S}或\texttt{.s}都是汇编文件的后缀名，其中\texttt{.S}后缀的文件支持预处理命令(如\texttt{\#}开头的大写命令)
-
-在进行系统调用的过程中，我们主要关心的文件有：
-
-\begin{longtable}[]{@{}ll@{}}
-	\toprule\noalign{}
-	文件名                & 功能简介           \\
-	\midrule\noalign{}
-	\endhead
-	\bottomrule\noalign{}
-	\endlastfoot
-	\texttt{usys.S}    & 提供用户态与内核态转换的接口 \\
-	\texttt{syscall.h} & 定义系统调用号        \\
-	\texttt{syscall.c} & 转发用户发起的系统调用到内核 \\
-	\texttt{sysfile.c} & 实现系统调用         \\
-	\texttt{sysproc.c} & 另一种实现系统调用的选项   \\
-	\texttt{user.h}    & 定义系统调用的参数传递方式  \\
-\end{longtable}
-
-接下来，我们逐个分析这些文件，查看系统原有的系统调用是如何实现的。
-
-\subsubsection{\texorpdfstring{\texttt{usys.S}}{usys.S}}\label{usyss}
-
-可以看到，这个文件包含3个部分。
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\PreprocessorTok{\#include }\ImportTok{"syscall.h"}
-		\PreprocessorTok{\#include }\ImportTok{"traps.h"}
-	\end{Highlighting}
-\end{Shaded}
-
-首先在头文件中导入了\texttt{syscall.h}和\texttt{traps.h}，前者稍后会提到，包含每个系统调用对应的编号，也就是这里的\texttt{\$SYS\_\ \#\#\ name}，后者提供了\texttt{\$T\_SYSCALL}的定义，在这个系统中被定义为64。
-
-\begin{quote}
-	拓展信息:
-
-	\begin{enumerate}
-		\def\labelenumi{\arabic{enumi}.}
-		\item
-		      \texttt{\$T\_SYSCALL}
-
-		      在x86架构的计算机中，当一个系统调用发生时，会触发一个陷阱（trap）。陷阱是一种特殊的中断，它会将CPU从用户态切换到内核态，然后跳转到预设的处理函数执行。这个处理函数的地址是在中断描述符表（IDT）中查找的，而\texttt{\$T\_SYSCALL}就是在IDT中的索引。
-		\item
-		      \texttt{IDT}
-
-		      IDT在\texttt{trap.c}中被实现，可以看到这是一个大小为256，类型为\texttt{gatedesc}的数组。\texttt{gatedesc}在\texttt{mmu.h}中被定义，这是一个结构体，包括了\texttt{off\_15\_0}和\texttt{off\_31\_16}(合起来表示中断处理程序在其所在段的偏移地址)，\texttt{cs}(指定处理函数所在段)，\texttt{args}(参数数量)和其他信息，在这个实验中该部分并不重要，故不详细展开。
-	\end{enumerate}
-\end{quote}
-
-接下来，使用宏定义了接口的通用模板，\texttt{.globl\ name}使系统调用的名称成为全局变量，用户程序无须导入任何头文件就可以直接使用该名称对应的函数。当该名称被使用时，自动把当前系统调用对应的编号放入\texttt{\%eax}，并发起中断(注意此处的\texttt{int}是\texttt{interupt}的简写)
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\NormalTok{\#define SYSCALL(name) \textbackslash{}}
-		\NormalTok{  .globl name; \textbackslash{}}
-		\NormalTok{  name: \textbackslash{}}
-		\NormalTok{    movl $SYS\_ \#\# name, \%eax; \textbackslash{}}
-		\NormalTok{    int $T\_SYSCALL; \textbackslash{}}
-		\NormalTok{    ret}
-	\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-	拓展信息:
-
-	\begin{enumerate}
-		\def\labelenumi{\arabic{enumi}.}
-		\item
-		      \texttt{\%eax}
-
-		      \texttt{eax}的全称是\texttt{Extended\ Accumulator\ Register}，是16位的\texttt{ax}的32位扩展。寄存器可近似理解为c语言中的变量，但是汇编中\texttt{eax}，\texttt{ebx}，\texttt{ecx}，\texttt{edx}并不相同，也不存在\texttt{eex}或\texttt{efx}。实际上，\texttt{b}指\texttt{base}(基底)，\texttt{c}指\texttt{counter}，\texttt{d}指\texttt{data}。
-
-		      在x86架构的Linux中，系统调用的编号是通过\texttt{\%eax}寄存器传递的，这是一个约定。调用完成后的返回也是由\texttt{\%eax}负责的。
-		\item
-		      \texttt{int}
-
-		      大家可能会将其与c/c++中的int发生混淆。在汇编语言中，int指令的格式为\texttt{int\ n}，其中\texttt{n}为中断类型码。执行中断指令时，首先记录当前状态(通过把\texttt{IP}指令指针和\texttt{FLAGS}标志寄存器入栈)，\texttt{IF}=0和\texttt{TF}=0，并根据\texttt{n}在\texttt{IDT}中查找对应陷阱门，包含了中断处理函数的段选择子和偏移地址。接下来，将中断门或陷阱门的段选择子加载到代码段寄存器（CS），将偏移地址加载到指令指针（IP）。这样，CPU就跳转到了中断处理函数。之后的操作不展开介绍，当执行完成时通过\texttt{iret}指令弹出IP和FLAGS，恢复CPU状态并继续执行指令。
-		\item
-		      \texttt{IF}(Interrupt Flag)
-
-		      \texttt{IF}属于FLAGS标志寄存器，当\texttt{IF}为1时，允许响应可屏蔽中断；当\texttt{IF}为0时，禁止响应可屏蔽中断。
-		\item
-		      \texttt{TF}(Trap Flag)
-
-		      当\texttt{TF}为1时，CPU会在执行每条指令后生成一个调试异常，这通常用于单步调试；当\texttt{TF}为0时，CPU不会生成调试异常。
-
-		      \texttt{gdb}的单步调试往往就是基于这个实现的。
-	\end{enumerate}
-\end{quote}
-
-最后一部分使用了上面定义的宏，为了实现我们的\texttt{getreadcount(void)}函数，我们只需要模仿其他系统调用:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\NormalTok{SYSCALL}\OperatorTok{(}\NormalTok{getreadcount}\OperatorTok{)}
-	\end{Highlighting}
-\end{Shaded}
-
-\subsubsection{\texorpdfstring{\texttt{syscall.h}}{syscall.h}}\label{syscallh}
-
-刚刚已经提到，这个文件用于定义系统调用号。我们只需要在最后加上一行\texttt{getreadcount(void)}对应的调用号即可，以\texttt{22}为例:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\PreprocessorTok{\#define SYS\_getreadcount }\DecValTok{22}
-	\end{Highlighting}
-\end{Shaded}
-
-\subsubsection{\texorpdfstring{\texttt{syscall.c}}{syscall.c}}\label{syscallc}
-
-刚刚提到，\texttt{int}指令使用了\texttt{trap.c}提供的\texttt{trap(struct\ trapframe\ *tf)}方法，其参数结构体\texttt{trapframe}传递了陷阱出现时的各种信息，感兴趣的可以自己在\texttt{x86.h}中查看。
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\ControlFlowTok{if}\OperatorTok{(}\NormalTok{tf}\OperatorTok{{-}\textgreater{}}\NormalTok{trapno }\OperatorTok{==}\NormalTok{ T\_SYSCALL}\OperatorTok{)\{}
-		\ControlFlowTok{if}\OperatorTok{(}\NormalTok{myproc}\OperatorTok{(){-}\textgreater{}}\NormalTok{killed}\OperatorTok{)}
-		\NormalTok{    	exit}\OperatorTok{();}
-		\NormalTok{  	myproc}\OperatorTok{(){-}\textgreater{}}\NormalTok{tf }\OperatorTok{=}\NormalTok{ tf}\OperatorTok{;}
-		\NormalTok{  	syscall}\OperatorTok{();}
-		\ControlFlowTok{if}\OperatorTok{(}\NormalTok{myproc}\OperatorTok{(){-}\textgreater{}}\NormalTok{killed}\OperatorTok{)}
-		\NormalTok{    	exit}\OperatorTok{();}
-		\ControlFlowTok{return}\OperatorTok{;}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-之后，如果中断向量号\texttt{trapno}(调用int指令自动把n放入该位置)是系统调用陷阱，之后保存\texttt{tf}信息并执行\texttt{syscall}函数，所以下一步我们需要修改的就是\texttt{syscall.c}。在\texttt{syscall.c}中，我们找到了\texttt{syscall()}函数的定义:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\DataTypeTok{void}\NormalTok{ syscall}\OperatorTok{(}\DataTypeTok{void}\OperatorTok{)}
-		\OperatorTok{\{}
-		\DataTypeTok{int}\NormalTok{ num}\OperatorTok{;}
-		\KeywordTok{struct}\NormalTok{ proc }\OperatorTok{*}\NormalTok{curproc }\OperatorTok{=}\NormalTok{ myproc}\OperatorTok{();}
-
-		\NormalTok{  num }\OperatorTok{=}\NormalTok{ curproc}\OperatorTok{{-}\textgreater{}}\NormalTok{tf}\OperatorTok{{-}\textgreater{}}\NormalTok{eax}\OperatorTok{;}
-		\ControlFlowTok{if} \OperatorTok{(}\NormalTok{num }\OperatorTok{\textgreater{}} \DecValTok{0} \OperatorTok{\&\&}\NormalTok{ num }\OperatorTok{\textless{}}\NormalTok{ NELEM}\OperatorTok{(}\NormalTok{syscalls}\OperatorTok{)} \OperatorTok{\&\&}\NormalTok{ syscalls}\OperatorTok{[}\NormalTok{num}\OperatorTok{])}
-		\OperatorTok{\{}
-		\NormalTok{    curproc}\OperatorTok{{-}\textgreater{}}\NormalTok{tf}\OperatorTok{{-}\textgreater{}}\NormalTok{eax }\OperatorTok{=}\NormalTok{ syscalls}\OperatorTok{[}\NormalTok{num}\OperatorTok{]();}
-		\OperatorTok{\}}
-		\ControlFlowTok{else}
-		\OperatorTok{\{}
-		\NormalTok{    cprintf}\OperatorTok{(}\StringTok{"}\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%s}\StringTok{: unknown sys call }\SpecialCharTok{\%d\textbackslash{}n}\StringTok{"}\OperatorTok{,}
-		\NormalTok{            curproc}\OperatorTok{{-}\textgreater{}}\NormalTok{pid}\OperatorTok{,}\NormalTok{ curproc}\OperatorTok{{-}\textgreater{}}\NormalTok{name}\OperatorTok{,}\NormalTok{ num}\OperatorTok{);}
-		\NormalTok{    curproc}\OperatorTok{{-}\textgreater{}}\NormalTok{tf}\OperatorTok{{-}\textgreater{}}\NormalTok{eax }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{1}\OperatorTok{;}
-		\OperatorTok{\}}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-还记得\texttt{eax}的内容吗？对于我们的\texttt{getreadcount}来说，是\texttt{22}，在上面定义了名为\texttt{syscalls}的列表，目前只有21行，很明显我们需要把\texttt{getreadcount}添加到这里:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\OperatorTok{[}\NormalTok{SYS\_getreadcount}\OperatorTok{]}\NormalTok{ sys\_getreadcount}\OperatorTok{,}
-	\end{Highlighting}
-\end{Shaded}
-
-这时，出现了\texttt{未定义标识符\ "sys\_getreadcount"}报错，继续向上翻，我们还需要添加一行:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\KeywordTok{extern} \DataTypeTok{int}\NormalTok{ sys\_getreadcount}\OperatorTok{(}\DataTypeTok{void}\OperatorTok{);}
-	\end{Highlighting}
-\end{Shaded}
-
-这一行会告诉编译器，我们已经在其他文件中定义了该函数，编译器会自动去寻找，这样会防止未定义报错，但编译器依旧警告\texttt{找不到“sys\_getreadcount”的函数定义}。看起来我们还需要在\texttt{sysfile.c}或\texttt{sysproc.c}中完成函数的定义。注意，尽管在这两个文件中定义中结果上是等价的，但在逻辑上，\texttt{sysfile.c}负责与文件系统相关的系统调用，如打开文件、读写文件、关闭文件等，而\texttt{sysproc.c}负责与进程管理相关的系统调用，例如创建进程、结束进程、等待进程等。让我们看一下测试用例test\_1.c:
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\PreprocessorTok{\#include }\ImportTok{"types.h"}
-		\PreprocessorTok{\#include }\ImportTok{"stat.h"}
-		\PreprocessorTok{\#include }\ImportTok{"user.h"}
-
-		\DataTypeTok{int}\NormalTok{ main}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ argc}\OperatorTok{,} \DataTypeTok{char} \OperatorTok{*}\NormalTok{argv}\OperatorTok{[])}
-		\OperatorTok{\{}
-		\DataTypeTok{int}\NormalTok{ x1 }\OperatorTok{=}\NormalTok{ getreadcount}\OperatorTok{();}
-		\DataTypeTok{int}\NormalTok{ x2 }\OperatorTok{=}\NormalTok{ getreadcount}\OperatorTok{();}
-		\DataTypeTok{char}\NormalTok{ buf}\OperatorTok{[}\DecValTok{100}\OperatorTok{];}
-		\OperatorTok{(}\DataTypeTok{void}\OperatorTok{)}\NormalTok{read}\OperatorTok{(}\DecValTok{4}\OperatorTok{,}\NormalTok{ buf}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
-		\DataTypeTok{int}\NormalTok{ x3 }\OperatorTok{=}\NormalTok{ getreadcount}\OperatorTok{();}
-		\DataTypeTok{int}\NormalTok{ i}\OperatorTok{;}
-		\ControlFlowTok{for} \OperatorTok{(}\NormalTok{i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}} \DecValTok{1000}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
-		\OperatorTok{\{}
-		\OperatorTok{(}\DataTypeTok{void}\OperatorTok{)}\NormalTok{read}\OperatorTok{(}\DecValTok{4}\OperatorTok{,}\NormalTok{ buf}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
-		\OperatorTok{\}}
-		\DataTypeTok{int}\NormalTok{ x4 }\OperatorTok{=}\NormalTok{ getreadcount}\OperatorTok{();}
-		\NormalTok{  printf}\OperatorTok{(}\DecValTok{1}\OperatorTok{,} \StringTok{"XV6\_TEST\_OUTPUT }\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d}\StringTok{ }\SpecialCharTok{\%d\textbackslash{}n}\StringTok{"}\OperatorTok{,}\NormalTok{ x2 }\OperatorTok{{-}}\NormalTok{ x1}\OperatorTok{,}\NormalTok{ x3 }\OperatorTok{{-}}\NormalTok{ x2}\OperatorTok{,}\NormalTok{ x4 }\OperatorTok{{-}}\NormalTok{ x3}\OperatorTok{);}
-		\NormalTok{  exit}\OperatorTok{();}
-		\OperatorTok{\}}
-	\end{Highlighting}
-\end{Shaded}
-
-很明显，\texttt{getreadcount}被调用后会记录\texttt{read}系统调用的次数，个人认为它应该被归类为文件操作，当然，这并不重要，你也可以选择在\texttt{sysproc.c}中完成函数的定义，操作上没有区别。
-
-\subsubsection{\texorpdfstring{\texttt{sysfile.c}}{sysfile.c}}\label{sysfilec}
-
-在测试用例1的预期输出中，我们看到\texttt{0\ 1\ 1000}，这说明我们需要用一个全局变量存储\texttt{read}指令的执行次数，修改\texttt{read}指令，记录指令的调用次数，最后实现\texttt{getreadcount}函数，使得调用\texttt{getreadcount}时获取该值。
-
-相信大家能自己完成该部分，不要参考网上的教程，否则你会减少很多乐趣，例如老师提到的测试用例2的错误。
-
-\subsubsection{\texorpdfstring{\texttt{user.h}}{user.h}}\label{userh}
-
-这个文件定义系统调用的参数传递方式，我们要实现的系统调用没有参数，所以我们只需要增加以下代码到\texttt{系统调用}部分。
-
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\DataTypeTok{int}\NormalTok{ getreadcount}\OperatorTok{(}\DataTypeTok{void}\OperatorTok{);}
-	\end{Highlighting}
-\end{Shaded}
+下一步应该检查“syscall.h”和“traps.c”文件，并根据int指令的执行过程，寻找下一步须修改的文件。
+
+\subsubsection{syscall.h}
+
+该文件用于定义系统调用号。在最后增加getreadcount(void)对应的调用号，如“22”。 % chktex 36
+
+\subsubsection{trap.c}
+
+该文件定义了trap函数，其开始部分通过检查中断号类型判断是否为系统调用：
+
+\begin{lstlisting}
+    //PAGEBREAK: 41
+    void
+    trap(struct trapframe *tf)
+    {
+        if(tf->trapno == T_SYSCALL){
+            if(myproc()->killed)
+                exit();
+            myproc()->tf = tf;
+            syscall();
+            if(myproc()->killed)
+                exit();
+            return;
+        }
+    }
+\end{lstlisting}
+
+当中断类型为系统调用时，将trapframe信息传递给myproc()并调用syscall()函数，该函数在“syscall.c”中定义。这里的myproc()函数通过pushcli和popcli调整中断禁用的深度，实现了某种锁，防止在获取当前进程信息时因为调度而错误地获取其他进程的信息。 % chktex 36
+
+\subsubsection{syscall.c}
+
+该文件提供了syscall()函数：% chktex 36
+\begin{lstlisting}
+    void syscall(void)
+    {
+        int num;
+        struct proc *curproc = myproc();
+      
+        num = curproc->tf->eax;
+        if (num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+          curproc->tf->eax = syscalls[num]();
+        }
+        else{
+          cprintf("%d %s: unknown sys call %d\n",
+                  curproc->pid, curproc->name, num);
+          curproc->tf->eax = -1;
+        }
+    }
+\end{lstlisting}
+
+该函数用于将系统调用转发到内核。在该函数中，通过“tf-\textgreater{}eax”获取系统调用号，通过“syscalls[num]”获取对应的系统调用函数，执行该函数并将返回值存入“tf-\textgreater{}eax”中。
+
+由此可见，我们需要在syscalls[]中增加getreadcount()函数的调用： % chktex 36
+\begin{lstlisting}
+    [SYS_getreadcount] sys_getreadcount
+\end{lstlisting}
+
+这时，出现了“未定义标识符 ``sys\_getreadcount''”报错，继续向上翻，我们还需要添加一行：
+
+\begin{lstlisting}
+    extern int sys_getreadcount(void);
+\end{lstlisting}
+
+这一行会告诉编译器，我们已经在其他文件中定义了该函数，编译器会自动去寻找。但编译器并没有找到“sys\_getreadcount”的函数定义，警告依然存在。
+
+其他系统调用在“sysfile.c”或“sysproc.c”中定义，“sysfile.c”负责与文件相关的系统调用，如打开文件、读写文件、关闭文件等，“sysproc.c”负责与进程管理相关的系统调用，如创建进程、结束进程、等待进程等。
+
+“getreadcount”被调用后会返回“read”的调用次数，个人认为它应该被归类为文件操作，但你也可以选择在“sysproc.c”中完成函数的定义，对于操作系统来说这两种方式没有区别。
+
+\subsubsection{sysfile.c}
+
+这个部分留给大家自己完成，你可以定义一个全局变量，每次调用“read”时自增，然后在“getreadcount”中返回该变量的值。
+
+\subsubsection{user.h}
+
+这个文件很多人可能会漏掉，它的作用是向用户提供该函数的接口。在其中增加一行：
+
+\begin{lstlisting}
+    int getreadcount(void);
+\end{lstlisting}
 
 这样能帮助c编译器检查系统调用传递的参数是否正确。
 
-\subsubsection{测试功能}\label{ux6d4bux8bd5ux529fux80fd}
+\subsubsection{测试功能}
 
-在文件夹\texttt{Xv6-Syscal}中打开终端。
+在文件夹“Xv6-Syscal”中打开集成终端，并修改测试脚本权限：
 
-首先，手动把刚刚的文件夹\texttt{xv6-public}改名为\texttt{src}，并修改测试文件权限。
+\begin{lstlisting}[language=bash]
+    sudo chmod 777 test-getreadcount.sh
+    ./test-getreadcount.sh
+\end{lstlisting}
 
-(假设\texttt{../test}文件夹中的脚本均已设为最高权限)
+正常情况下，因为在`getreadcount`实现部分没有对多线程进行针对性的处理，test2可能会无法通过，这是正常的。
 
-\begin{Shaded}
-	\begin{Highlighting}[]
-		\FunctionTok{sudo}\NormalTok{ chmod 777 test{-}getreadcount.sh}
-		\ExtensionTok{./test{-}getreadcount.sh}
-	\end{Highlighting}
-\end{Shaded}
+\noindent Tips:
 
-正常情况下，因为在\texttt{getreadcount}实现部分没有对多线程进行针对性的处理，测试用例2可能会存在一种极端情况，两个进程同时读取了\texttt{readcount}的值并执行\texttt{++}操作，这样他们写回的值将会是原先加一，而不是加二，导致最后的结果不符，test1通过，test2不通过。但是，我这边即使反复尝试，甚至把次数增加到100倍，也没有出现同时访问导致的错误。
+有使用VMware的同学在这一步出现了以下报错，可能是系统内置的包不同导致。
+\begin{lstlisting}[language=bash]
+    ./testgetreadcount.sh
+    doing one-time pre-test (use -s to suppress)
+    ../tester/xv6-edit-makefile.sh: line 6: gawk: command not found
+    make: *** No rule to make target 'clean'.  Stop.
+    make: Nothing to be done for 'xv6.img'.
+    make: *** No rule to make target 'fs.img'.  Stop.
+\end{lstlisting}
 
-(本部分参考了Xv6官方的\href{https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-xv6}{介绍}和\href{https://www.bilibili.com/video/BV1mJ4m1777o/}{教学视频})
+解决方法是手动安装缺少的包:
+\begin{lstlisting}[language=bash]
+    sudo apt-get install gawk
+\end{lstlisting}
+
+
+\newpage
+\printbibliography{}
 
 \end{document}
