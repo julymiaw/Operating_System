@@ -1,0 +1,1 @@
+本文件是latex版的实验指导教程，可以直接查看main.pdf，也可以克隆本文件夹本地编译。编译采用xelatex+biblatex+2*xelatex，支持Overleaf。
