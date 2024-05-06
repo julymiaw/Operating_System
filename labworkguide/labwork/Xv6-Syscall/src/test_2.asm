@@ -1,5 +1,5 @@
 
-_test_2:     file format elf32-i386
+_test_2：     文件格式 elf32-i386
 
 
 Disassembly of section .text:
@@ -9,8 +9,7 @@ Disassembly of section .text:
 #include "stat.h"
 #include "user.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
    0:	8d 4c 24 04          	lea    0x4(%esp),%ecx
    4:	83 e4 f0             	and    $0xfffffff0,%esp
    7:	ff 71 fc             	push   -0x4(%ecx)
@@ -23,8 +22,8 @@ int main(int argc, char *argv[])
     int x1 = getreadcount();
 
     int rc = fork();
-  13:	bb 80 96 98 00       	mov    $0x989680,%ebx
-{
+  13:	bb 10 27 00 00       	mov    $0x2710,%ebx
+int main(int argc, char *argv[]) {
   18:	51                   	push   %ecx
   19:	81 ec 88 00 00 00    	sub    $0x88,%esp
     int x1 = getreadcount();
@@ -36,9 +35,8 @@ int main(int argc, char *argv[])
 
     int total = 0;
     int i;
-    for (i = 0; i < 10000000; i++)
+    for (i = 0; i < 10000; i++) {
   31:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
-    {
         char buf[100];
         (void)read(4, buf, 1);
   38:	83 ec 04             	sub    $0x4,%esp
@@ -46,7 +44,7 @@ int main(int argc, char *argv[])
   3d:	56                   	push   %esi
   3e:	6a 04                	push   $0x4
   40:	e8 a6 02 00 00       	call   2eb <read>
-    for (i = 0; i < 10000000; i++)
+    for (i = 0; i < 10000; i++) {
   45:	83 c4 10             	add    $0x10,%esp
   48:	83 eb 01             	sub    $0x1,%ebx
   4b:	75 eb                	jne    38 <main+0x38>
@@ -54,10 +52,9 @@ int main(int argc, char *argv[])
     // https://wiki.osdev.org/Shutdown
     // (void) shutdown();
 
-    if (rc > 0)
+    if (rc > 0) {
   4d:	85 ff                	test   %edi,%edi
   4f:	7e 21                	jle    72 <main+0x72>
-    {
         (void)wait();
   51:	e8 85 02 00 00       	call   2db <wait>
         int x2 = getreadcount();
