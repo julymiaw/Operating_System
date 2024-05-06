@@ -12,7 +12,9 @@
         "defs.h": "c",
         "date.h": "c",
         "spinlock.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "mapreduce.h": "c",
+        "string.h": "c"
     },
     "cSpell.words": [
         "Labworks",
