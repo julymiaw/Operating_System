@@ -151,6 +151,8 @@ userinit(void)
   p->state = RUNNABLE;
 
   release(&ptable.lock);
+
+  p->readid = 0;//my change
 }
 
 // Grow current process's memory by n bytes.

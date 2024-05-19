@@ -27,6 +27,23 @@ void Reduce(char *key, Getter get_next, int partition_number) {
     printf("%s %d\n", key, count);
 }
 
+// 现在增加了两个可选参数，--map和--reduce，用于指定map和reduce线程的数量
 int main(int argc, char *argv[]) {
-    MR_Run(argc, argv, Map, 10, Reduce, 10, MR_DefaultHashPartition);
+    int map_num = 10;
+    int reduce_num = 10;
+    char **new_argv = malloc(sizeof(char *) * argc);
+    int new_argc = 0;
+
+    for (int i = 0; i < argc; i++) {
+        if (strcmp(argv[i], "--map") == 0 && i + 1 < argc) {
+            map_num = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--reduce") == 0 && i + 1 < argc) {
+            reduce_num = atoi(argv[++i]);
+        } else {
+            new_argv[new_argc++] = argv[i];
+        }
+    }
+
+    MR_Run(new_argc, new_argv, Map, map_num, Reduce, reduce_num, MR_DefaultHashPartition);
+    free(new_argv);
 }

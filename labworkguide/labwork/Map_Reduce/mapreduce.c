@@ -17,7 +17,7 @@ KeyValuePair **heads;         // 桶的头指针数组
 KeyValuePair **currents;      // 当前处理的键值对的指针数组
 int num_partitions;           // 分区的数量
 Partitioner global_partition; // 分区函数
-pthread_mutex_t lock_emit;    // 用于保护emit操作的互斥锁
+pthread_mutex_t *lock_emit;   // 用于保护emit操作的互斥锁
 pthread_mutex_t lock_index;   // 用于保护文件索引的互斥锁
 
 // 将新的键值对插入到有序链表中
@@ -38,20 +38,18 @@ void insert_sorted(KeyValuePair **head, KeyValuePair *newPair) {
 void MR_Emit(char *key, char *value) {
     // 检查key是否为空字符串
     if (key == NULL || strlen(key) == 0) {
-        // printf("MR_Emit: key is an empty string, skipping\n"); // 添加的打印语句
         return;
     }
 
     int partition = global_partition(key, num_partitions);
-    // printf("MR_Emit: key=%s, value=%s, partition=%d\n", key, value, partition); // 添加的打印语句
     KeyValuePair *newPair = (KeyValuePair *)malloc(sizeof(KeyValuePair));
     newPair->key = strdup(key);
     newPair->value = strdup(value);
     newPair->partition = partition;
 
-    pthread_mutex_lock(&lock_emit);
+    pthread_mutex_lock(&lock_emit[partition]);
     insert_sorted(&heads[partition], newPair);
-    pthread_mutex_unlock(&lock_emit);
+    pthread_mutex_unlock(&lock_emit[partition]);
 }
 
 unsigned long MR_DefaultHashPartition(char *key, int num_partitions) {
@@ -100,12 +98,8 @@ char *get_next(char *key, int partition_number) {
         char *value = currents[partition_number]->value;
         currents[partition_number] = currents[partition_number]->next;
         return value;
-    } else {
-        if (currents[partition_number] != NULL) {
-            currents[partition_number] = currents[partition_number]->next;
-        }
-        return NULL;
     }
+    return NULL;
 }
 
 void *reduce_thread(void *arg) {
@@ -133,7 +127,7 @@ void print_bucket(int partition_number) {
     KeyValuePair *current = heads[partition_number];
     printf("Bucket %d:\n", partition_number);
     while (current != NULL) {
-        printf("Key: %s, Value: %s\n", current->key, current->value);
+        // printf("Key: %s, Value: %s\n", current->key, current->value);
         current = current->next;
     }
 }
@@ -144,7 +138,10 @@ void MR_Run(int argc, char *argv[],
             Partitioner partition) {
     pthread_t *threads_map = (pthread_t *)malloc(sizeof(pthread_t) * num_mappers);
     pthread_t *threads_reduce = (pthread_t *)malloc(sizeof(pthread_t) * num_reducers);
-    pthread_mutex_init(&lock_emit, NULL);
+    lock_emit = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num_reducers);
+    for (int i = 0; i < num_reducers; i++) {
+        pthread_mutex_init(&lock_emit[i], NULL);
+    }
     pthread_mutex_init(&lock_index, NULL);
 
     num_partitions = num_reducers;
@@ -191,7 +188,10 @@ void MR_Run(int argc, char *argv[],
         pthread_join(threads_reduce[i], NULL);
     }
 
-    pthread_mutex_destroy(&lock_emit);
+    for (int i = 0; i < num_reducers; i++) {
+        pthread_mutex_destroy(&lock_emit[i]);
+    }
+    free(lock_emit);
     pthread_mutex_destroy(&lock_index);
     free(threads_map);
     free(threads_reduce);

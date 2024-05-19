@@ -27,7 +27,7 @@ Map Reduce
         // 值: 文档内容
         for each word w in value:
             EmitIntermediate(w, "1");
-
+    
     reduce(String key, Iterator values):
         // 键: 单词
         // 值: 不同文件中count值的列表
@@ -140,7 +140,7 @@ unsigned long MR_DefaultHashPartition(char *key, int num_partitions) {
 这里是一些编程中的注意事项:
 
 - **线程管理**:
- 
+
   这部分相当直接。你应该创建num_mappers个映射线程，并以你认为最好的方式（例如，轮询(Round Robin)，最短文件优先(Shortest-File-First)等）为每个Map()调用分配一个文件。哪种方式可能会带来最佳的性能？在某个时候，你也应该创建num_reducers个reducer线程，来处理map的输出。
 
 - **分隔和排序**：
@@ -157,3 +157,43 @@ unsigned long MR_DefaultHashPartition(char *key, int num_partitions) {
 你的代码应该提交mapreduce.c，它能够正确且高效地实现上述函数。它将与测试应用程序一起编译，编译时会使用-Wall -Werror -pthread -O标志；同时，它也会被valgrind检查内存错误。
 
 首先，你的代码将被检查正确性，确保它正确地执行了映射和归约。如果你通过了正确性测试，那么你的代码将会进行性能测试；性能越高，得分就越高。
+
+## 测试程序
+
+首先，输入`gcc -o wordcount wordcount.c mapreduce.c -lpthread`编译得到可执行文件
+
+(注意这里的wordcount.c进行了一些修改，增加了两个可选参数`--map`和`--reduce`)
+
+之后，你需要更改这两个脚本的权限:
+
+sudo chmod +x wordcount
+
+sudo chmod +x test.sh
+
+你可能还需要安装bc包：sudo apt-get install bc
+
+之后，你就可以运行test.sh来测试Map_reduce的正确性与性能了。
+
+测试时，test1主要针对正确性，而后续虽然也检查正确性，但是重点在于并行度对效率的提升。
+
+test2是仅1个文件的情况，这种情况下，map的值与并行度无关。
+
+之后，test3将同样的文件分为200份，test4分为100份。
+
+在这种情况下，单线程处理(map=1)的增加时间是IO耗时，而map取10或100带来的效率提升就是并行程序的功劳。如果增加并行度而效率反而下降，可以尝试把全局锁改为针对每个桶的锁。
+
+示例输出如下：
+
+```text
+test1  correct 0.0025 s
+test2  correct 1.0736 s
+test3     reduce=1  reduce=10 reduce=100
+map=1     13.8016   1.1517    0.1216    
+map=10    13.5830   0.5505    0.0914    
+map=100   28.1280   1.0405    0.1008    
+test4     reduce=1  reduce=10 reduce=100
+map=1     13.8216   1.3468    0.2228    
+map=10    15.8236   0.5743    0.1084    
+map=100   25.0356   0.8117    0.0866  
+```
+由图可见，reduce并行度对于总时间的影响更明显。map并行度提高带来的效率增加可能无法抵消线程创建带来的时间成本，所以对于100到200个文件，10个线程表现最佳。
