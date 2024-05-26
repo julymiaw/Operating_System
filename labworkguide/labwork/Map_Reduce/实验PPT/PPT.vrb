@@ -1,0 +1,21 @@
+\frametitle{Testing and Analysis}
+\framesubtitle{Efficiency of Multithreaded Map and Reduce.Cond}
+    \begin{minipage}{.40\linewidth}
+        \begin{itemize}
+            \item The results of the test script are shown below:
+        \end{itemize}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.9\textwidth]{figures/test_output.png}
+        \end{figure}
+    \end{minipage}
+    \begin{minipage}{.59\linewidth}
+        \begin{itemize}
+            \item First, it's important to note that when the number of reduce threads is 1, increasing the number of map threads can actually decrease efficiency.
+                  \note[item]{This is because the number of reduce threads equals the number of partitions, and a partition can only be accessed by the same map thread at a time.}
+            \item Second, increasing the number of reduce threads can always improve performance significantly.
+                  \note[item]{Regardless of the number of map threads}
+            \item Finally, although the hash function can evenly distribute key-value pairs to each partition, considering the different word frequencies, the load on each node may not be balanced.
+                  \note[item]{From an algorithmic perspective, there is still much room for optimization in the program.}
+        \end{itemize}
+    \end{minipage}
